@@ -1,0 +1,196 @@
+sid,name,units
+6,Highest natural disaster risk,
+rank,country,datum
+1,Andorra,0.26
+1,Monaco,0.26
+2,San Marino,0.38
+3,Sao Tome and Principe,0.48
+4,Luxembourg,0.52
+5,Liechtenstein,0.79
+6,Singapore,0.81
+7,Belarus,0.83
+8,Malta,0.94
+9,Bahrain,0.95
+10,Hungary,0.97
+11,Czechia,1
+11,Nauru,1
+11,Slovakia,1
+12,Maldives,1.02
+13,Denmark,1.03
+13,Switzerland,1.03
+14,Bhutan,1.09
+15,Austria,1.14
+16,Qatar,1.17
+17,Palau,1.25
+18,North Macedonia,1.26
+19,Cape Verde,1.27
+20,Turkmenistan,1.29
+21,Finland,1.3
+21,Moldova,1.3
+22,Lesotho,1.32
+22,Togo,1.32
+23,Brunei,1.34
+24,Botswana,1.44
+24,Slovenia,1.44
+25,Tuvalu,1.46
+26,Benin,1.61
+27,Iceland,1.65
+28,Paraguay,1.74
+28,Uzbekistan,1.74
+29,Estonia,1.82
+29,Eswatini,1.82
+30,Serbia,1.84
+31,Grenada,1.85
+32,Barbados,2.06
+32,Burkina Faso,2.06
+32,Sweden,2.06
+33,Saint Kitts and Nevis,2.07
+34,Ivory Coast,2.08
+34,Mongolia,2.08
+35,Latvia,2.14
+36,Bulgaria,2.15
+37,Niger,2.17
+38,Kazakhstan,2.18
+39,Azerbaijan,2.2
+39,Kyrgyzstan,2.2
+40,Lithuania,2.24
+41,Mali,2.25
+42,Marshall Islands,2.29
+43,Saint Vincent and the Grenadines,2.3
+44,Tajikistan,2.38
+45,Zimbabwe,2.44
+46,Bosnia and Herzegovina,2.51
+47,Seychelles,2.54
+48,Comoros,2.56
+48,Kuwait,2.56
+49,Nepal,2.62
+50,Kiribati,2.64
+51,Saint Lucia,2.69
+52,Rwanda,2.7
+53,Armenia,2.72
+54,Cyprus,2.78
+55,Uganda,2.81
+56,Laos,2.91
+57,Chad,2.92
+58,Trinidad and Tobago,2.93
+59,Zambia,2.94
+60,Burundi,3.03
+61,Ghana,3.05
+62,Bolivia,3.07
+63,Ireland,3.1
+64,Samoa,3.15
+65,Norway,3.16
+66,Romania,3.19
+67,Dominica,3.27
+68,Malawi,3.3
+68,Montenegro,3.3
+69,Central African Republic,3.34
+70,Equatorial Guinea,3.36
+71,Jordan,3.48
+72,Mauritius,3.5
+73,Lebanon,3.52
+74,Bahamas,3.75
+85,Georgia,3.79
+86,Antigua and Barbuda,3.84
+87,Ukraine,3.89
+88,Germany,3.92
+89,Tonga,3.94
+90,Netherlands,4.04
+91,Afghanistan,4.05
+92,Liberia,4.11
+93,Guinea-Bissau,4.14
+94,Belgium,4.16
+95,South Sudan,4.21
+96,Micronesia,4.36
+97,Gambia,4.45
+98,Poland,4.63
+99,Israel,4.65
+99,Jamaica,4.65
+100,Gabon,4.72
+101,Ethiopia,4.8
+102,Congo,4.85
+103,Croatia,4.86
+104,Suriname,4.87
+105,Uruguay,4.92
+106,Albania,4.98
+107,Sierra Leone,5
+108,Portugal,5.08
+109,Senegal,5.42
+110,United Kingdom,5.78
+111,Namibia,5.93
+111,Sri Lanka,5.93
+112,United Arab Emirates,6.52
+113,Fiji,6.54
+114,Guyana,6.64
+115,France,6.67
+116,Guinea,6.84
+117,Oman,7.27
+118,Belize,7.65
+119,Eritrea,7.7
+120,Cuba,7.97
+120,East Timor,7.97
+121,Cambodia,8.42
+122,Greece,8.55
+123,Iraq,8.65
+124,Nigeria,9.12
+125,Mauritania,9.34
+126,Italy,9.37
+127,South Africa,9.42
+128,Algeria,9.58
+129,Saudi Arabia,9.64
+130,DR Congo,9.65
+131,Spain,9.68
+132,Tunisia,9.87
+133,Haiti,9.99
+134,Sudan,10.12
+135,Morocco,10.29
+136,South Korea,10.51
+137,Vanuatu,10.64
+138,Djibouti,10.66
+139,Angola,11.02
+140,Cameroon,11.17
+141,Guatemala,11.18
+142,North Korea,11.82
+143,Brazil,12.15
+144,Syria,12.16
+145,New Zealand,13.05
+146,Dominican Republic,13.23
+147,Chile,13.84
+148,Kenya,13.92
+149,Costa Rica,14.2
+150,Libya,14.31
+151,Malaysia,14.36
+152,El Salvador,14.37
+153,Solomon Islands,14.62
+154,Argentina,15.61
+155,Honduras,16
+156,Turkey,16.23
+157,Tanzania,16.38
+158,Japan,17.03
+159,Panama,18.38
+160,Iran,18.48
+161,Canada,18.99
+162,Egypt,20.65
+163,Thailand,20.91
+164,Australia,21.36
+165,Nicaragua,22.35
+166,Ecuador,22.42
+167,Venezuela,22.45
+168,United States,22.73
+169,Madagascar,23.48
+170,Papua New Guinea,24.1
+171,Yemen,24.26
+172,Somalia,25.07
+173,Peru,25.41
+174,Vietnam,25.85
+175,Russia,26.54
+176,Pakistan,26.75
+177,Bangladesh,27.9
+178,China,28.7
+179,Mozambique,34.37
+180,Myanmar,35.49
+181,Mexico,37.55
+182,Colombia,38.37
+183,Indonesia,41.46
+184,India,42.31
+185,Philippines,46.82

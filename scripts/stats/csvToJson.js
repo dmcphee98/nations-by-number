@@ -130,6 +130,7 @@ nameToAlpha03map.set("Jordan", "JOR");
 nameToAlpha03map.set("Japan", "JPN");
 nameToAlpha03map.set("Kazakhstan", "KAZ");
 nameToAlpha03map.set("Kenya", "KEN");
+nameToAlpha03map.set("Kosovo", "KSV");
 nameToAlpha03map.set("Kyrgyzstan", "KGZ");
 nameToAlpha03map.set("Cambodia", "KHM");
 nameToAlpha03map.set("Kiribati", "KIR");
@@ -267,7 +268,7 @@ nameToAlpha03map.set("Zambia", "ZMB");
 nameToAlpha03map.set("Zimbabwe", "ZWE");
 nameToAlpha03map.set("Turkey", "TUR");
 
-fs.readFile('AnnualRainfall.csv', (err, data) => {
+fs.readFile('stat.csv', (err, data) => {
     parse(data, {columns: false, trim: true}, (err, rows) => {
         if (err) {
             console.error(err);
