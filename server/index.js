@@ -70,12 +70,12 @@
                     units: 1,  
                     rankings: {
                         $filter: {
-                        input: "$rankings",
-                        as: "ranking",
-                        cond: {
-                            $in: ["$$ranking.rank", [rank1, rank2, rank3]]
-                        }
-                        }
+                            input: "$rankings",
+                            as: "ranking",
+                            cond: {
+                                $in: ["$$ranking.rank", [rank1, rank2, rank3]]
+                            }
+                        },
                     }
                 }
             }

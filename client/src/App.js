@@ -40,11 +40,15 @@ function App() {
 
   }, [userOrder]);
 
-
   const makeRequest = () => {
     const data = {};
     axios.get('https://g3w6hkwjmzejlbwk2p6dlnzz7y0kgpco.lambda-url.us-east-1.on.aws/').then((response) => {
       console.log(response.data[0]);
+      console.log(response.data[0].rankings[0].cid);
+
+
+
+      console.log(response.data[0].rankings.sort((a, b) => a.cid > b.cid));
       setStatSet(response.data[0]);
     });
   }

@@ -47,14 +47,39 @@
     height: 93%;
     border-radius: 4%;
     cursor: pointer;
+
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.CountryStat .StampContainer {
+    position: absolute;
+    top: 10%;
+    left: 25.5%;
+    height: 80%;
+    width: 50%;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .CountryStat .Stamp {
-    position: absolute;
-    top: 20%;
-    left: 30%;
-    height: 60%;
-    pointer-events: none;
+    opacity: 0;
+}
+
+.CountryStat .Stamp.Invisible {
+    height: 90%;
+    transition: height 0.08s linear 0.2s, opacity 0.2s ease-out;
+}
+
+.CountryStat .Stamp.Visible {
+    height: 80%;
+    opacity: 1;
+    transition: height 0.08s ease-in, opacity 0.08s ease-in;
 }
 
 @media screen and (orientation: landscape) and (min-width: 768px) {
