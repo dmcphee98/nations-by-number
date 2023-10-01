@@ -27,14 +27,22 @@
 
 @media screen and (orientation: landscape) {
   .CountryStatsContainer {
-    width: 68%;
-    height: 15vw;
+    width: 60%;
+    height: 13vw;
     flex-direction: row;
     justify-content: space-evenly;
+    padding-bottom: 12vh;
   }
   .Question {
-    font-size: 4vw;
+    font-size: 3vw;
     padding-bottom: 8vh;
+  }
+  .Title {
+    font-size: 1vw;
+    padding-bottom: 2vh;
+    font-family: 'Lexend', sans-serif;    
+    opacity: 0.5;
+    letter-spacing: 0.15vw;
   }
 }
 
@@ -48,5 +56,10 @@
     font-size: 8vw;
     padding-bottom: 2vh;
   }
+}
+
+img.Compass {
+  opacity: 0.2;
+  height: 5vw;
 }
 

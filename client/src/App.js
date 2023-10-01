@@ -6,11 +6,12 @@ import "./App.css";
 function App() {
 
   const [userOrder, setUserOrder] = useState([]);
-  const [statSet, setStatSet] = useState({});
+  const [games, setGames] = useState([]);
+  const [game, setGame] = useState({});
 
   useEffect(() => {
-    setStatSet({
-      name: "Highest average temperature",
+    setGame({
+      name: "Most IKEA stores",
       rankings: [
         {
           rank: "38",
@@ -34,23 +35,43 @@ function App() {
   useEffect(() => {
     console.log(userOrder)
     if (userOrder.length === 3) {
-      makeRequest();
+      newGame();
       setUserOrder([]);
     }
 
   }, [userOrder]);
 
-  const makeRequest = () => {
-    const data = {};
-    axios.get('https://g3w6hkwjmzejlbwk2p6dlnzz7y0kgpco.lambda-url.us-east-1.on.aws/').then((response) => {
-      console.log(response.data[0]);
-      console.log(response.data[0].rankings[0].cid);
-
-
-
-      console.log(response.data[0].rankings.sort((a, b) => a.cid > b.cid));
-      setStatSet(response.data[0]);
-    });
+  const sortName = (nameA, nameB) => {
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+      return 0;  
+  }
+  
+  const newGame = async () => {
+    if (games.length === 0) {
+      await axios.get('https://g3w6hkwjmzejlbwk2p6dlnzz7y0kgpco.lambda-url.us-east-1.on.aws?n=5').then((response) => {
+        let fetchedGames = response.data;
+        console.log(fetchedGames);
+        fetchedGames[0].rankings.sort((a, b) => sortName(a.cid, b.cid));
+        setGame(fetchedGames[0]);
+        setGames(fetchedGames.slice(1));
+      }); 
+    } else {
+      games[0].rankings.sort((a, b) => sortName(a.cid, b.cid));
+      setGame(games[0]);
+      if (games.length < 5) {
+        axios.get('https://g3w6hkwjmzejlbwk2p6dlnzz7y0kgpco.lambda-url.us-east-1.on.aws?n=5').then((response) => {
+          let fetchedGames = response.data;
+          setGames(games => [...(games.slice(1)), ...fetchedGames]);
+        });
+      } else {
+        setGames(games.slice(1));
+      }
+    }
   }
 
   const onCountrySelect = (cid) => {
@@ -66,32 +87,34 @@ function App() {
 
   return (
     <div className="App" >
-      <div className="Question">{!!statSet.name ? statSet.name.toUpperCase() : ""}</div>
-        {!!statSet.rankings && 
+      <img className="Compass" src={require("./images/Compass.png")}/>
+      <div className="Title">{"\u2022"} WHICH COUNTRY HAS THE {"\u2022"}</div>
+      <div className="Question">{!!game.name ? game.name.toUpperCase() : ""}</div>
+        {!!game.rankings && 
           <div className="CountryStatsContainer">
             <CountryStat 
-              countryCode={statSet.rankings[0].cid} 
-              key={statSet.rankings[0].cid} 
-              userRanking={userOrder.indexOf(statSet.rankings[0].cid)+1} 
-              onClick={() => onCountrySelect(statSet.rankings[0].cid)}
+              countryCode={game.rankings[0].cid} 
+              key={game.rankings[0].cid} 
+              userRanking={userOrder.indexOf(game.rankings[0].cid)+1} 
+              onClick={() => onCountrySelect(game.rankings[0].cid)}
             />
             <div className="LeafContainer">
               <img src={require("./images/LeafUp.png")}/>
             </div>
             <CountryStat 
-              countryCode={statSet.rankings[1].cid} 
-              key={statSet.rankings[1].cid} 
-              userRanking={userOrder.indexOf(statSet.rankings[1].cid)+1} 
-              onClick={() => onCountrySelect(statSet.rankings[1].cid)}
+              countryCode={game.rankings[1].cid} 
+              key={game.rankings[1].cid} 
+              userRanking={userOrder.indexOf(game.rankings[1].cid)+1} 
+              onClick={() => onCountrySelect(game.rankings[1].cid)}
             />
             <div className="LeafContainer">
               <img src={require("./images/LeafDown.png")}/>
             </div>
             <CountryStat 
-              countryCode={statSet.rankings[2].cid} 
-              key={statSet.rankings[2].cid} 
-              userRanking={userOrder.indexOf(statSet.rankings[2].cid)+1} 
-              onClick={() => onCountrySelect(statSet.rankings[2].cid)}
+              countryCode={game.rankings[2].cid} 
+              key={game.rankings[2].cid} 
+              userRanking={userOrder.indexOf(game.rankings[2].cid)+1} 
+              onClick={() => onCountrySelect(game.rankings[2].cid)}
             />
           </div>
         }

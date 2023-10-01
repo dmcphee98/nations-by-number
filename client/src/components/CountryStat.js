@@ -12,10 +12,12 @@ function CountryStat({countryCode, userRanking, stat, unit, onClick}) {
   const [prevUserRanking, setPrevUserRanking] = useState(-1); 
   const [rotation, setRotation] = useState(0);
   const stamps = [firstStamp, secondStamp, thirdStamp];
+  const [isFlipped, setFlipped] = useState(false);
 
   const localOnClick = () => {
     setPrevUserRanking((prevUserRanking) => {return userRanking;})
     if (userRanking === 0) setRotation((rotation) => {return getRandomInt(-18, 18)});
+    setFlipped(!isFlipped);
     onClick();
   }
 
@@ -43,7 +45,7 @@ function CountryStat({countryCode, userRanking, stat, unit, onClick}) {
 
   return (
     <div className="CountryStat">
-      <div className="FlagContainer">
+      <div className={`FlagContainer ${isFlipped ? 'Flipped' : ''}`}>
         <img className="CardBorder"src={require("../images/CardBorder4.png")}/>
         <Flag code={countryCode} onClick={localOnClick}/>
         <div className="StampContainer">

@@ -22,6 +22,7 @@
     cursor: default;
     margin-top: 0.5vh;
     text-align: center;
+    line-height: 100%;
 }
 
 .CountryStat .FlagContainer {
@@ -30,6 +31,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: transform 0.6s;
+    backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.CountryStat .FlagContainer.Flipped {
+    /*transform: rotateX(180deg)*/
 }
 
 .CardBorder {
