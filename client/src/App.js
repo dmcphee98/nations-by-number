@@ -6,31 +6,47 @@ import "./App.css";
 function App() {
 
   const [userOrder, setUserOrder] = useState([]);
-  const [games, setGames] = useState([]);
-  const [game, setGame] = useState({});
-
-  useEffect(() => {
-    setGame({
-      name: "Most IKEA stores",
-      rankings: [
-        {
-          rank: "38",
-          cid: "AND",
-          datum: "25.85"
-        },
-        {
-          rank: "95",
-          cid: "HUN",
-          datum: "22.35"
-        },
-        {
-          rank: "152",
-          cid: "SVN",
-          datum: "9.75"
-        }
-      ]
-    })
-  }, []);
+  const [topFaceActive, setTopFaceActive] = useState(true);
+  const [games, setGames] = useState([{
+    name: "Most IKEA stores",
+    rankings: [
+      {
+        rank: "38",
+        cid: "AND",
+        datum: "25.85"
+      },
+      {
+        rank: "95",
+        cid: "HUN",
+        datum: "22.35"
+      },
+      {
+        rank: "152",
+        cid: "SVN",
+        datum: "9.75"
+      }
+    ]
+  },
+  {
+    name: "Most IKEA stores",
+    rankings: [
+      {
+        rank: "38",
+        cid: "ALB",
+        datum: "25.85"
+      },
+      {
+        rank: "95",
+        cid: "AZE",
+        datum: "22.35"
+      },
+      {
+        rank: "152",
+        cid: "BEL",
+        datum: "9.75"
+      }
+    ]
+  }]);
 
   useEffect(() => {
     console.log(userOrder)
@@ -52,24 +68,21 @@ function App() {
   }
   
   const newGame = async () => {
-    if (games.length === 0) {
-      await axios.get('https://g3w6hkwjmzejlbwk2p6dlnzz7y0kgpco.lambda-url.us-east-1.on.aws?n=5').then((response) => {
+    if (!!!games || games.length <= 1) {
+      axios.get('https://g3w6hkwjmzejlbwk2p6dlnzz7y0kgpco.lambda-url.us-east-1.on.aws?n=5').then((response) => {
         let fetchedGames = response.data;
         console.log(fetchedGames);
-        fetchedGames[0].rankings.sort((a, b) => sortName(a.cid, b.cid));
-        setGame(fetchedGames[0]);
-        setGames(fetchedGames.slice(1));
+        setGames((games) => {return fetchedGames});
+        setTopFaceActive(topFaceActive => !topFaceActive);
       }); 
     } else {
-      games[0].rankings.sort((a, b) => sortName(a.cid, b.cid));
-      setGame(games[0]);
-      if (games.length < 5) {
+      setGames(games => games.slice(1));
+      setTopFaceActive(topFaceActive => !topFaceActive);
+      if (games.length <= 5) {
         axios.get('https://g3w6hkwjmzejlbwk2p6dlnzz7y0kgpco.lambda-url.us-east-1.on.aws?n=5').then((response) => {
           let fetchedGames = response.data;
-          setGames(games => [...(games.slice(1)), ...fetchedGames]);
+          setGames(games => [...games, ...fetchedGames]);
         });
-      } else {
-        setGames(games.slice(1));
       }
     }
   }
@@ -85,37 +98,41 @@ function App() {
     }
   }
 
+  const getCountryStat = (n) => {
+    const cid = games[0]?.rankings?.[n]?.cid;
+    const nextCid = games[1]?.rankings?.[n]?.cid;
+    return (
+      <CountryStat 
+        key={n} 
+        topFaceActive={topFaceActive}
+        cid={cid} 
+        nextCid={nextCid}
+        userRanking={userOrder.indexOf(cid)+1} 
+        onClick={() => onCountrySelect(cid)}
+      />
+    )
+  }
+
   return (
     <div className="App" >
       <img className="Compass" src={require("./images/Compass.png")}/>
       <div className="Title">{"\u2022"} WHICH COUNTRY HAS THE {"\u2022"}</div>
-      <div className="Question">{!!game.name ? game.name.toUpperCase() : ""}</div>
-        {!!game.rankings && 
+      <div className="QuestionContainer">
+        <div className={`Question Top ${topFaceActive ? "" : "Hidden"}`}>{!!games[0] ? games[0].name.toUpperCase() : ""}</div>
+        <div className={`Question Bottom ${topFaceActive ? "Hidden" : ""}`}>{!!games[1] ? games[1].name.toUpperCase() : ""}</div>
+      </div>
+        {!!games[0].rankings && 
+
           <div className="CountryStatsContainer">
-            <CountryStat 
-              countryCode={game.rankings[0].cid} 
-              key={game.rankings[0].cid} 
-              userRanking={userOrder.indexOf(game.rankings[0].cid)+1} 
-              onClick={() => onCountrySelect(game.rankings[0].cid)}
-            />
+            {getCountryStat(0)}
             <div className="LeafContainer">
               <img src={require("./images/LeafUp.png")}/>
             </div>
-            <CountryStat 
-              countryCode={game.rankings[1].cid} 
-              key={game.rankings[1].cid} 
-              userRanking={userOrder.indexOf(game.rankings[1].cid)+1} 
-              onClick={() => onCountrySelect(game.rankings[1].cid)}
-            />
+            {getCountryStat(1)}
             <div className="LeafContainer">
               <img src={require("./images/LeafDown.png")}/>
             </div>
-            <CountryStat 
-              countryCode={game.rankings[2].cid} 
-              key={game.rankings[2].cid} 
-              userRanking={userOrder.indexOf(game.rankings[2].cid)+1} 
-              onClick={() => onCountrySelect(game.rankings[2].cid)}
-            />
+            {getCountryStat(2)}
           </div>
         }
     </div>

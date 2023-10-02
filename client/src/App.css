@@ -14,6 +14,26 @@
   display: flex;
 }
 
+.QuestionContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 6vh;
+}
+
+.Question {
+  position: absolute;
+  opacity: 1;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+.Question.Hidden{
+  transform: translateY(2vh);
+  opacity: 0;
+}
+
 .LeafContainer {
   height: 80%;
   display: flex;
@@ -33,7 +53,7 @@
     justify-content: space-evenly;
     padding-bottom: 12vh;
   }
-  .Question {
+  .QuestionContainer {
     font-size: 3vw;
     padding-bottom: 8vh;
   }
@@ -52,7 +72,7 @@
     flex-direction: column;
     justify-content: space-around;
   }
-  .Question {
+  .QuestionContainer {
     font-size: 8vw;
     padding-bottom: 2vh;
   }

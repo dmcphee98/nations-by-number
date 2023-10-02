@@ -6,6 +6,7 @@
     align-items: center;
     box-sizing: border-box;
     padding: 0.15vw;
+    position: relative;
 
     transition: padding 0.1s ease;
 }
@@ -14,81 +15,108 @@
     padding: 0vw;
 }
 
-.CountryStat .Name {
-    display: flex;
-    justify-content: center;
-    height: 20%;
-    max-width: 15vw; 
-    cursor: default;
-    margin-top: 0.5vh;
-    text-align: center;
-    line-height: 100%;
-}
+.CountryStat {
 
-.CountryStat .FlagContainer {
-    height: 80%;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.6s;
-    backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-}
+    .Name {
+        position: absolute;
+        top: 80%;
+        opacity: 1;
+        display: flex;
+        justify-content: center;
+        height: 20%;
+        max-width: 15vw; 
+        cursor: default;
+        margin-top: 0.5vh;
+        text-align: center;
+        line-height: 100%;
 
-.CountryStat .FlagContainer.Flipped {
-    /*transform: rotateX(180deg)*/
-}
+        transition: top 0.6s ease, opacity 0.6s ease;
+    }
 
-.CardBorder {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0%;
-    right: 0%;
-    pointer-events: none;
-}
+    .Name.Hidden {
+        top: 90%;
+        opacity: 0;
+    }
 
-.CountryStat img.Flag {
-    margin-left: 3px;
-    margin-right: 3px;
-    height: 93%;
-    border-radius: 4%;
-    cursor: pointer;
+    .Card {
+        height: 80%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-    -webkit-user-drag: none;
-    user-select: none;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-}
+    .CardFace {
+        position: absolute;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    
+        transition: transform 0.6s;
+        backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+    }
 
-.CountryStat .StampContainer {
-    position: absolute;
-    top: 10%;
-    left: 25.5%;
-    height: 80%;
-    width: 50%;
-    pointer-events: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    .CardFace.FaceUp {
+        transform: rotateX(0deg);
+    }
+    
+    .CardFace.FaceDown {
+        transform: rotateX(180deg);
+        pointer-events: none;
+    }
 
-.CountryStat .Stamp {
-    opacity: 0;
-}
+    .CardFace .Border {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0%;
+        right: 0%;
+        pointer-events: none;
+    }
 
-.CountryStat .Stamp.Invisible {
-    height: 90%;
-    transition: height 0.08s linear 0.2s, opacity 0.2s ease-out;
-}
-
-.CountryStat .Stamp.Visible {
-    height: 80%;
-    opacity: 1;
-    transition: height 0.08s ease-in, opacity 0.08s ease-in;
+    .CardFace img.Flag {
+        margin-left: 3px;
+        margin-right: 3px;
+        height: 93%;
+        border-radius: 4%;
+        cursor: pointer;
+    
+        -webkit-user-drag: none;
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+    
+    .StampContainer {
+        position: absolute;
+        top: 10%;
+        left: 25.5%;
+        height: 80%;
+        width: 50%;
+        pointer-events: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .StampContainer .Stamp {
+        opacity: 0;
+    }
+    
+    .StampContainer .Stamp.Invisible {
+        height: 90%;
+        transition: height 0.08s linear 0.2s, opacity 0.2s ease-out;
+    }
+    
+    .StampContainer .Stamp.Visible {
+        height: 80%;
+        opacity: 1;
+        transition: height 0.08s ease-in, opacity 0.08s ease-in;
+    } 
 }
 
 @media screen and (orientation: landscape) and (min-width: 768px) {

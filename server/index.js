@@ -60,7 +60,7 @@
         const results = await db.collection("countrystats").aggregate([
             {
                 $match: {
-                "sid": dataSetId
+                    "sid": dataSetId
                 }
             },
             {
@@ -78,9 +78,25 @@
                         },
                     }
                 }
+            },
+            {
+                $unwind: "$rankings"
+            },
+            {
+                $sort: {
+                    "rankings.cid": 1
+                }
+            },
+            {
+                $group: {
+                    _id: "$_id",
+                    name: { $first: "$name" },
+                    units: { $first: "$units" },
+                    rankings: { $push: "$rankings" }
+                }
             }
-            ]).toArray();
-            console.log(results);
-            process.exit();        
+        ]).toArray();            
+        console.log(results);
+        process.exit();        
     
     });

@@ -7,24 +7,35 @@ import thirdStamp from "../images/Third.png";
 
 import "./CountryStat.css";
 
-function CountryStat({countryCode, userRanking, stat, unit, onClick}) {
+function CountryStat({ cid, nextCid, topFaceActive, userRanking, onClick }) {
 
   const [prevUserRanking, setPrevUserRanking] = useState(-1); 
   const [rotation, setRotation] = useState(0);
   const stamps = [firstStamp, secondStamp, thirdStamp];
-  const [isFlipped, setFlipped] = useState(false);
+  const [topFaceCid, setTopFaceCid] = useState(cid); 
+  const [bottomFaceCid, setBottomFaceCid] = useState(nextCid); 
 
   const localOnClick = () => {
     setPrevUserRanking((prevUserRanking) => {return userRanking;})
     if (userRanking === 0) setRotation((rotation) => {return getRandomInt(-18, 18)});
-    setFlipped(!isFlipped);
     onClick();
   }
 
-  useEffect(() => {
-    console.log(prevUserRanking)
 
-  }, [prevUserRanking]);
+  const flipFace = async () => {
+    await new Promise(resolve => setTimeout(resolve, 800));
+    if (!topFaceActive) {
+      // Flipped from top face to bottom face
+      console.log(nextCid);
+      setTopFaceCid(nextCid);
+    } else {
+      setBottomFaceCid(nextCid);
+    }
+  }
+
+  useEffect(() => {
+    flipFace();
+  }, [topFaceActive]);
   
   const getImgSrc = () => { 
     if (userRanking > 0) {
@@ -41,22 +52,41 @@ function CountryStat({countryCode, userRanking, stat, unit, onClick}) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min) + min);
   }
-  
 
   return (
     <div className="CountryStat">
-      <div className={`FlagContainer ${isFlipped ? 'Flipped' : ''}`}>
-        <img className="CardBorder"src={require("../images/CardBorder4.png")}/>
-        <Flag code={countryCode} onClick={localOnClick}/>
-        <div className="StampContainer">
-          <img 
-            className={`Stamp ${userRanking !== 0 ? 'Visible' : 'Invisible'}`} 
-            src={getImgSrc()}
-            style={{rotate: `${rotation}deg`}}
-          />
+      <div className="Card">
+        <div className={`CardFace Top ${topFaceActive ? 'FaceUp' : 'FaceDown'}`}>
+          <img className="Border"src={require("../images/CardBorder4.png")}/>
+          <Flag cid={topFaceCid} onClick={localOnClick}/>
+          <div className="StampContainer">
+            {topFaceActive &&
+              <img 
+                className={`Stamp ${userRanking !== 0 ? 'Visible' : 'Invisible'}`} 
+                src={getImgSrc()}
+                style={{rotate: `${rotation}deg`}}
+              />
+            }
+          </div>
+        </div>
+        <div className={`CardFace Bottom ${topFaceActive ? 'FaceDown' : 'FaceUp'}`}>
+          <img className="Border" src={require("../images/CardBorder4.png")}/>
+          <Flag cid={bottomFaceCid} onClick={localOnClick}/>
+          <div className="StampContainer">
+            {!topFaceActive &&
+              <img 
+                className={`Stamp ${userRanking !== 0 ? 'Visible' : 'Invisible'}`} 
+                src={getImgSrc()}
+                style={{rotate: `${rotation}deg`}}
+              />
+            }
+          </div>
         </div>
       </div>
-      <div className="Name">{decodeAlpha03(countryCode).toUpperCase()}</div>
+
+      <div className={`Name Top ${topFaceActive ? '' : 'Hidden'}`}>{!!topFaceCid ? decodeAlpha03(topFaceCid).toUpperCase() : ""}</div>
+      <div className={`Name Bottom ${topFaceActive ? 'Hidden' : ''}`}>{!!bottomFaceCid ? decodeAlpha03(bottomFaceCid).toUpperCase() : ""}</div>
+
     </div>
   )
 }

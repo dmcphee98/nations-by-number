@@ -1,7 +1,7 @@
 import React from "react";
 import decodeAlpha03 from "./Alpha03Decoder";
 
-function Flag({code, onClick}) {
+function Flag({cid, onClick}) {
 
   const resolveImgSrc = (code) => {
     try {
@@ -14,8 +14,8 @@ function Flag({code, onClick}) {
   return (
     <img 
       className="Flag"
-      src={resolveImgSrc(code)} 
-      alt={`Flag of ${decodeAlpha03(code)}`}
+      src={resolveImgSrc(cid)} 
+      alt={!!cid ? 'Flag of ' + decodeAlpha03(cid) : 'Unknown flag'}
       onClick={onClick}
     />
   )
