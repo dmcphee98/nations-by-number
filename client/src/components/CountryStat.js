@@ -4,6 +4,7 @@ import decodeAlpha03 from "./Alpha03Decoder";
 import firstStamp from "../images/First.png";
 import secondStamp from "../images/Second.png";
 import thirdStamp from "../images/Third.png";
+import Globe from "./Globe";
 
 import "./CountryStat.css";
 
@@ -21,12 +22,13 @@ function CountryStat({ cid, nextCid, topFaceActive, userRanking, onClick }) {
     onClick();
   }
 
-
   const flipFace = async () => {
+    // TODO: need to put edge-case logic here to populate both faces of the card after first load
+    if (bottomFaceCid === "NIL") setBottomFaceCid(cid); 
+
     await new Promise(resolve => setTimeout(resolve, 800));
     if (!topFaceActive) {
       // Flipped from top face to bottom face
-      console.log(nextCid);
       setTopFaceCid(nextCid);
     } else {
       setBottomFaceCid(nextCid);
@@ -54,11 +56,14 @@ function CountryStat({ cid, nextCid, topFaceActive, userRanking, onClick }) {
   }
 
   return (
-    <div className="CountryStat">
+    <div className={`CountryStat ${topFaceCid === "NIL" ? 'Loading' : 'Loaded'}`}>
       <div className="Card">
         <div className={`CardFace Top ${topFaceActive ? 'FaceUp' : 'FaceDown'}`}>
           <img className="Border"src={require("../images/CardBorder4.png")}/>
           <Flag cid={topFaceCid} onClick={localOnClick}/>
+          { topFaceCid === "NIL" &&
+            <Globe />
+          }
           <div className="StampContainer">
             {topFaceActive &&
               <img 

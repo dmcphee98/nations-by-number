@@ -525,7 +525,7 @@ const decodeAlpha03 = (code) => {
         case "ZWE": 
             return "Zimbabwe";
         default:
-             throw new Error("Alpha-03 code could not be decoded!"); 
+             return ""; 
     }
 }
 

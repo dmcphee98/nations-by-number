@@ -7,46 +7,11 @@ function App() {
 
   const [userOrder, setUserOrder] = useState([]);
   const [topFaceActive, setTopFaceActive] = useState(true);
-  const [games, setGames] = useState([{
-    name: "Most IKEA stores",
-    rankings: [
-      {
-        rank: "38",
-        cid: "AND",
-        datum: "25.85"
-      },
-      {
-        rank: "95",
-        cid: "HUN",
-        datum: "22.35"
-      },
-      {
-        rank: "152",
-        cid: "SVN",
-        datum: "9.75"
-      }
-    ]
-  },
-  {
-    name: "Most IKEA stores",
-    rankings: [
-      {
-        rank: "38",
-        cid: "ALB",
-        datum: "25.85"
-      },
-      {
-        rank: "95",
-        cid: "AZE",
-        datum: "22.35"
-      },
-      {
-        rank: "152",
-        cid: "BEL",
-        datum: "9.75"
-      }
-    ]
-  }]);
+  const [games, setGames] = useState([]);
+
+  useEffect(() => {
+    newGame();
+  }, []);
 
   useEffect(() => {
     console.log(userOrder)
@@ -54,7 +19,6 @@ function App() {
       newGame();
       setUserOrder([]);
     }
-
   }, [userOrder]);
 
   const sortName = (nameA, nameB) => {
@@ -68,11 +32,11 @@ function App() {
   }
   
   const newGame = async () => {
-    if (!!!games || games.length <= 1) {
+    if (!!!games || games.length == 0) {
+      console.log("GET request");
       axios.get('https://g3w6hkwjmzejlbwk2p6dlnzz7y0kgpco.lambda-url.us-east-1.on.aws?n=5').then((response) => {
         let fetchedGames = response.data;
-        console.log(fetchedGames);
-        setGames((games) => {return fetchedGames});
+        setGames(games => [...games, ...fetchedGames]);
         setTopFaceActive(topFaceActive => !topFaceActive);
       }); 
     } else {
@@ -99,8 +63,10 @@ function App() {
   }
 
   const getCountryStat = (n) => {
-    const cid = games[0]?.rankings?.[n]?.cid;
-    const nextCid = games[1]?.rankings?.[n]?.cid;
+    let cid, nextCid;
+    const isLoading = !!!games[0];
+    cid = isLoading ? "NIL" : games[0]?.rankings?.[n]?.cid;
+    nextCid = isLoading ? "NIL" : games[1]?.rankings?.[n]?.cid;
     return (
       <CountryStat 
         key={n} 
@@ -121,8 +87,6 @@ function App() {
         <div className={`Question Top ${topFaceActive ? "" : "Hidden"}`}>{!!games[0] ? games[0].name.toUpperCase() : ""}</div>
         <div className={`Question Bottom ${topFaceActive ? "Hidden" : ""}`}>{!!games[1] ? games[1].name.toUpperCase() : ""}</div>
       </div>
-        {!!games[0].rankings && 
-
           <div className="CountryStatsContainer">
             {getCountryStat(0)}
             <div className="LeafContainer">
@@ -134,7 +98,6 @@ function App() {
             </div>
             {getCountryStat(2)}
           </div>
-        }
     </div>
   );
 }

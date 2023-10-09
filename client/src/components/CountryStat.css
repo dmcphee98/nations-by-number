@@ -11,7 +11,15 @@
     transition: padding 0.1s ease;
 }
 
-.CountryStat:hover {
+.CountryStat.Loaded {
+    cursor: pointer;
+}
+
+.CountryStat.Loading .Card {
+    cursor: progress;
+}
+
+.CountryStat.Loaded:hover {
     padding: 0vw;
 }
 
@@ -25,7 +33,6 @@
         justify-content: center;
         height: 20%;
         max-width: 15vw; 
-        cursor: default;
         margin-top: 0.5vh;
         text-align: center;
         line-height: 100%;
@@ -82,7 +89,6 @@
         margin-right: 3px;
         height: 93%;
         border-radius: 4%;
-        cursor: pointer;
     
         -webkit-user-drag: none;
         user-select: none;

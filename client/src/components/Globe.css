@@ -1,0 +1,46 @@
+.Globe {
+	height: 34.5%;  
+    width: 0;
+    position: absolute;  
+	margin: 0;
+    padding-right: 24%;
+	top: 31%; 
+	left: 39.75%;
+}
+
+.Globe .WorldMap {
+	position: absolute; 
+	margin: 0; 
+    left: 0; 
+	top: 0; 
+	width: 100%; 
+	height: 100%; 
+	overflow: hidden;
+	border-radius: 50%;
+}
+
+
+.Globe .WorldMap .Front {
+    position: absolute; 
+	margin: 0; 
+    background-image: url("../images/globe.png");
+    background-repeat: no-repeat;
+    left: 0; 
+	top: 0; 
+	width: 500%; 
+	height: 100%; 
+	overflow: visible;
+	animation: textureSpinreverse 6s linear infinite;
+    background-size: 100%;
+    background-position: 0px 0px;
+
+}
+
+@keyframes textureSpinreverse {
+	from {
+        transform: translateX(-47.5%);
+	}
+	to {
+		transform: translateX(0);
+	}
+}

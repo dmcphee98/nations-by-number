@@ -7,7 +7,7 @@ function Flag({cid, onClick}) {
     try {
       return require(`../images/flags/${code}.png`);
     } catch (e) {
-      return require(`../images/flags/ERR.png`);
+      return require(`../images/flags/NIL.png`);
     }
   }
 
