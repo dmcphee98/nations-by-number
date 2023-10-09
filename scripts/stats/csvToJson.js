@@ -48,6 +48,7 @@ nameToAlpha03map.set("Switzerland", "CHE");
 nameToAlpha03map.set("Chile", "CHL");
 nameToAlpha03map.set("China", "CHN");
 nameToAlpha03map.set("Ivory Coast", "CIV");
+nameToAlpha03map.set("Cote d'Ivoire", "CIV");
 nameToAlpha03map.set("Côte d'Ivoire (Ivory Coast)", "CIV");
 nameToAlpha03map.set("Cameroon", "CMR");
 nameToAlpha03map.set("DR Congo", "COD");
@@ -99,6 +100,7 @@ nameToAlpha03map.set("Gibraltar", "GIB");
 nameToAlpha03map.set("Guinea", "GIN");
 nameToAlpha03map.set("Guadeloupe", "GLP");
 nameToAlpha03map.set("Gambia", "GMB");
+nameToAlpha03map.set("The Gambia", "GMB");
 nameToAlpha03map.set("Guinea-Bissau", "GNB");
 nameToAlpha03map.set("Equatorial Guinea", "GNQ");
 nameToAlpha03map.set("Greece", "GRC");
@@ -289,7 +291,7 @@ fs.readFile('stat.csv', (err, data) => {
             const cid =  nameToAlpha03map.get(rows[i][1]);
             if (!!!cid) throw new Error(`Country \'${rows[i][1]}\' is not contained in map.`) 
             console.log(`\"cid\": \"${cid}\",`);
-            console.log(`\"datum\": ${rows[i][2]}`);
+            console.log(`\"datum\": \"${rows[i][2]}\"`);
             console.log(`}${i == rows.length-1 ? "" : ","}`);
         }
         console.log("]");

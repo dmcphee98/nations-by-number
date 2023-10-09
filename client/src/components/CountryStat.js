@@ -8,13 +8,11 @@ import Globe from "./Globe";
 
 import "./CountryStat.css";
 
-function CountryStat({ cid, nextCid, topFaceActive, userRanking, onClick }) {
+function CountryStat({ cidA, cidB, isPlayingGameA, userRanking, onClick }) {
 
   const [prevUserRanking, setPrevUserRanking] = useState(-1); 
   const [rotation, setRotation] = useState(0);
   const stamps = [firstStamp, secondStamp, thirdStamp];
-  const [topFaceCid, setTopFaceCid] = useState(cid); 
-  const [bottomFaceCid, setBottomFaceCid] = useState(nextCid); 
 
   const localOnClick = () => {
     setPrevUserRanking((prevUserRanking) => {return userRanking;})
@@ -22,24 +20,7 @@ function CountryStat({ cid, nextCid, topFaceActive, userRanking, onClick }) {
     onClick();
   }
 
-  const flipFace = async () => {
-    // TODO: need to put edge-case logic here to populate both faces of the card after first load
-    if (bottomFaceCid === "NIL") setBottomFaceCid(cid); 
-
-    await new Promise(resolve => setTimeout(resolve, 800));
-    if (!topFaceActive) {
-      // Flipped from top face to bottom face
-      setTopFaceCid(nextCid);
-    } else {
-      setBottomFaceCid(nextCid);
-    }
-  }
-
-  useEffect(() => {
-    flipFace();
-  }, [topFaceActive]);
-  
-  const getImgSrc = () => { 
+  const getStampImgSrc = () => { 
     if (userRanking > 0) {
       return stamps[userRanking-1];
     }
@@ -56,42 +37,40 @@ function CountryStat({ cid, nextCid, topFaceActive, userRanking, onClick }) {
   }
 
   return (
-    <div className={`CountryStat ${topFaceCid === "NIL" ? 'Loading' : 'Loaded'}`}>
+    <div className={`CountryStat ${cidA === "NIL" ? 'Loading' : 'Loaded'}`}>
       <div className="Card">
-        <div className={`CardFace Top ${topFaceActive ? 'FaceUp' : 'FaceDown'}`}>
+        <div className={`CardFace Top ${isPlayingGameA ? 'FaceUp' : 'FaceDown'}`}>
           <img className="Border"src={require("../images/CardBorder4.png")}/>
-          <Flag cid={topFaceCid} onClick={localOnClick}/>
-          { topFaceCid === "NIL" &&
+          <Flag cid={cidA} onClick={localOnClick}/>
+          { cidA === "NIL" &&
             <Globe />
           }
           <div className="StampContainer">
-            {topFaceActive &&
+            {isPlayingGameA &&
               <img 
                 className={`Stamp ${userRanking !== 0 ? 'Visible' : 'Invisible'}`} 
-                src={getImgSrc()}
+                src={getStampImgSrc()}
                 style={{rotate: `${rotation}deg`}}
               />
             }
           </div>
         </div>
-        <div className={`CardFace Bottom ${topFaceActive ? 'FaceDown' : 'FaceUp'}`}>
+        <div className={`CardFace Bottom ${isPlayingGameA ? 'FaceDown' : 'FaceUp'}`}>
           <img className="Border" src={require("../images/CardBorder4.png")}/>
-          <Flag cid={bottomFaceCid} onClick={localOnClick}/>
+          <Flag cid={cidB} onClick={localOnClick}/>
           <div className="StampContainer">
-            {!topFaceActive &&
+            {!isPlayingGameA &&
               <img 
                 className={`Stamp ${userRanking !== 0 ? 'Visible' : 'Invisible'}`} 
-                src={getImgSrc()}
+                src={getStampImgSrc()}
                 style={{rotate: `${rotation}deg`}}
               />
             }
           </div>
         </div>
       </div>
-
-      <div className={`Name Top ${topFaceActive ? '' : 'Hidden'}`}>{!!topFaceCid ? decodeAlpha03(topFaceCid).toUpperCase() : ""}</div>
-      <div className={`Name Bottom ${topFaceActive ? 'Hidden' : ''}`}>{!!bottomFaceCid ? decodeAlpha03(bottomFaceCid).toUpperCase() : ""}</div>
-
+      <div className={`Name Top ${isPlayingGameA ? '' : 'Hidden'}`}>{!!cidA ? decodeAlpha03(cidA).toUpperCase() : ""}</div>
+      <div className={`Name Bottom ${isPlayingGameA ? 'Hidden' : ''}`}>{!!cidB ? decodeAlpha03(cidB).toUpperCase() : ""}</div>
     </div>
   )
 }
