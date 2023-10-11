@@ -270,7 +270,7 @@ const decodeAlpha03 = (code) => {
             return "Saint Kitts and Nevis";
         case "KOR":
             return "South Korea";
-        case "KSV":
+        case "KVO":
             return "Kosovo";
         case "KWT":
             return "Kuwait";

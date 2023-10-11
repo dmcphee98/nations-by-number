@@ -36,6 +36,31 @@ function CountryStat({ cidA, cidB, isPlayingGameA, userRanking, onClick }) {
     return Math.floor(Math.random() * (max - min) + min);
   }
 
+  const renderStamp = (game) => {
+    if (isPlayingGameA && game === "B") return;
+    if (!isPlayingGameA && game === "A") return;
+
+    return (
+      <div className="StampContainer">
+        <img 
+          className={`Stamp ${userRanking === 1 ? 'Visible' : 'Invisible'}`} 
+          src={firstStamp}
+          style={{rotate: `${rotation}deg`}}
+        />
+        <img 
+          className={`Stamp ${userRanking === 2 ? 'Visible' : 'Invisible'}`} 
+          src={secondStamp}
+          style={{rotate: `${rotation}deg`}}
+        />
+        <img 
+          className={`Stamp ${userRanking === 3 ? 'Visible' : 'Invisible'}`} 
+          src={thirdStamp}
+          style={{rotate: `${rotation}deg`}}
+        />
+      </div>
+    )
+  }
+
   return (
     <div className={`CountryStat ${cidA === "NIL" ? 'Loading' : 'Loaded'}`}>
       <div className="Card">
@@ -45,28 +70,12 @@ function CountryStat({ cidA, cidB, isPlayingGameA, userRanking, onClick }) {
           { cidA === "NIL" &&
             <Globe />
           }
-          <div className="StampContainer">
-            {isPlayingGameA &&
-              <img 
-                className={`Stamp ${userRanking !== 0 ? 'Visible' : 'Invisible'}`} 
-                src={getStampImgSrc()}
-                style={{rotate: `${rotation}deg`}}
-              />
-            }
-          </div>
+          {renderStamp("A")}
         </div>
         <div className={`CardFace Bottom ${isPlayingGameA ? 'FaceDown' : 'FaceUp'}`}>
           <img className="Border" src={require("../images/CardBorder4.png")}/>
           <Flag cid={cidB} onClick={localOnClick}/>
-          <div className="StampContainer">
-            {!isPlayingGameA &&
-              <img 
-                className={`Stamp ${userRanking !== 0 ? 'Visible' : 'Invisible'}`} 
-                src={getStampImgSrc()}
-                style={{rotate: `${rotation}deg`}}
-              />
-            }
-          </div>
+          {renderStamp("B")}
         </div>
       </div>
       <div className={`Name Top ${isPlayingGameA ? '' : 'Hidden'}`}>{!!cidA ? decodeAlpha03(cidA).toUpperCase() : ""}</div>

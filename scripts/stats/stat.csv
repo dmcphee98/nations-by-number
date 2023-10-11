@@ -1,201 +1,191 @@
 sid,name,units
-11,Highest population density,
+13,Obesity Rate,%
 rank,country,datum
-1,Monaco,"17,285"
-2,Singapore,"8,251"
-3,Bahrain,"1,909"
-4,Maldives,"1,746"
-5,Malta,"1,699"
-6,Vatican City,"1,559"
-7,Bangladesh,"1,165"
-8,Palestine,892
-9,Taiwan,676
-10,Mauritius,657
-11,Barbados,654
-12,Nauru,609
-13,San Marino,552
-14,Rwanda,535
-15,South Korea,516
-16,Lebanon,512
-17,Burundi,476
-18,Tuvalu,438
-19,India,435
-20,Netherlands,424
-21,Haiti,423
-22,Israel,416
-23,Philippines,391
-24,Belgium,383
-25,Comoros,381
-26,Grenada,366
-27,Sri Lanka,334
-28,Japan,326
-29,El Salvador,303
-30,Pakistan,302
-31,Trinidad and Tobago,299
-32,Vietnam,298
-33,Saint Lucia,293
-34,United Kingdom,277
-35,Saint Vincent and the Grenadines,267
-36,Jamaica,257
-37,Luxembourg,253
-38,Liechtenstein,247
-39,Gambia,246
-40,Nigeria,242
-41,Kuwait,242
-42,Sao Tome and Principe,241
-43,Seychelles,236
-44,Qatar,233
-45,Germany,233
-46,Dominican Republic,233
-47,Marshall Islands,232
-48,Malawi,221
-49,North Korea,217
-50,Antigua and Barbuda,213
-51,Switzerland,213
-52,Nepal,210
-53,Uganda,201
-54,Italy,195
-55,Kiribati,184
-56,Saint Kitts and Nevis,183
-57,Andorra,171
-58,Guatemala,166
-59,Micronesia,164
-60,Togo,159
-61,Kosovo,153
-62,China,149
-63,Cape Verde,148
-64,Indonesia,145
-65,Tonga,144
-66,Ghana,143
-67,Thailand,140
-68,Denmark,138
-69,Cyprus,136
-70,United Arab Emirates,134
-71,Czech Republic,133
-72,Poland,131
-73,Jordan,127
-74,Syria,125
-75,Sierra Leone,122
-76,Azerbaijan,120
-77,Benin,119
-78,Slovakia,118
-79,Ethiopia,115
-80,Egypt,112
-81,Portugal,111
-82,Turkey,110
-83,Hungary,109
-84,Austria,107
-85,Iraq,105
-86,Slovenia,105
-87,Malaysia,104
-88,Costa Rica,102
-89,Cuba,102
-90,Moldova,102
-91,Albania,99
-92,Dominica,97
-93,Honduras,94
-94,Spain,94
-95,Cambodia,94
-96,Armenia,93
-97,Kenya,93
-98,East Timor,91
-99,Senegal,90
-100,Ivory Coast,90
-101,Burkina Faso,86
-102,Morocco,85
-103,Romania,83
-104,North Macedonia,81
-105,Serbia,81
-106,Myanmar,81
-107,Samoa,79
-108,Brunei,78
-109,Greece,78
-110,Uzbekistan,78
-111,Lesotho,77
-112,Tunisia,76
-113,Ireland,72
-114,Cook Islands,72
-115,Tajikistan,72
-116,Tanzania,71
-117,Croatia,71
-118,Ecuador,71
-119,Eswatini,70
-120,Mexico,65
-121,Yemen,65
-122,Afghanistan,65
-123,Bosnia and Herzegovina,63
-124,Equatorial Guinea,61
-125,Ukraine,61
-126,Bulgaria,61
-127,Cameroon,60
-128,Guinea-Bissau,60
-129,Panama,59
-130,Guinea,58
-131,Iran,55
-132,Nicaragua,54
-133,Georgia,53
-134,Madagascar,52
-135,Fiji,51
-136,South Africa,49
-137,Djibouti,49
-138,Liberia,49
-139,Belarus,46
-140,Colombia,46
-141,Montenegro,45
-142,DR Congo,44
-143,Zimbabwe,43
-144,Mozambique,42
-145,Lithuania,42
-146,Palau,39
-147,United States,35
-148,Kyrgyzstan,34
-149,Laos,32
-150,Venezuela,31
-151,Eritrea,31
-152,Bahamas,30
-153,Angola,29
-154,Estonia,29
-155,Somalia,28
-156,Latvia,28
-157,Vanuatu,27
-158,Zambia,27
-159,Sudan,27
-160,Peru,27
-161,Chile,26
-162,Solomon Islands,26
-163,Brazil,25
-164,Sweden,24
-165,Papua New Guinea,22
-166,Niger,21
-167,Bhutan,21
-168,Uruguay,20
-169,New Zealand,20
-170,Algeria,19
-171,Mali,19
-172,Belize,18
-173,Congo,18
-174,South Sudan,17
-175,Saudi Arabia,17
-176,Finland,16
-177,Argentina,16
-178,Paraguay,15
-179,Oman,15
-180,Chad,14
-181,Norway,14
-182,Turkmenistan,13
-183,Bolivia,11
-184,Central African Republic,9
-185,Gabon,9
-186,Russia,8
-187,Niue,7
-188,Kazakhstan,7
-189,Mauritania,5
-190,Botswana,5
-191,Libya,4
-192,Canada,4
-193,Suriname,4
-194,Guyana,4
-195,Iceland,4
-196,Australia,3
-197,Namibia,3
-198,Mongolia,2
+1,Cook Islands,56
+2,Palau,55
+3,Marshall Islands,53
+4,Tuvalu,52
+5,Tonga,48
+6,Samoa,47
+7,Kiribati,46
+8,Federated States of Micronesia,45.8
+9,United States,41.9
+10,Kuwait,37.9
+11,Jordan,35.5
+12,Saudi Arabia,35.4
+13,Qatar,35.1
+14,Libya,32.5
+15,Turkey,32.1
+16,Egypt,32
+17,Lebanon,32
+18,United Arab Emirates,31.7
+19,Bahamas,31.6
+20,New Zealand,30.8
+21,Iraq,30.4
+22,Fiji,30.2
+23,Canada,29.8
+24,Australia,29
+25,Malta,28.9
+26,Mexico,54.7
+27,Argentina,28.3
+28,South Africa,28.3
+29,Chile,28
+30,Dominica,27.9
+31,Uruguay,27.9
+32,Syria,27.8
+33,United Kingdom,27.8
+34,Dominican Republic,27.8
+35,Algeria,27.4
+36,Oman,27
+37,Tunisia,26.9
+38,Suriname,26.4
+39,Hungary,26.4
+40,Lithuania,26.3
+41,Morocco,26.1
+42,Israel,26.1
+43,Czech Republic,26
+44,Iran,25.8
+45,Costa Rica,25.7
+46,Andorra,25.6
+47,Venezuela,25.6
+48,Ireland,25.3
+49,Vanuatu,25.2
+50,Bulgaria,25
+51,Greece,24.9
+52,Jamaica,24.7
+53,Cuba,24.6
+54,El Salvador,24.6
+55,Belarus,24.5
+56,Croatia,24.4
+57,Belize,24.1
+58,Ukraine,24.1
+59,Spain,23.8
+60,Nicaragua,23.7
+61,Saint Vincent and the Grenadines,23.7
+62,Latvia,23.6
+63,Montenegro,23.3
+64,Norway,23.1
+65,Barbados,23.1
+66,Poland,23.1
+67,Russia,23.1
+68,Saint Kitts and Nevis,22.9
+69,Panama,22.7
+70,Haiti,22.7
+71,Luxembourg,22.6
+72,Solomon Islands,22.5
+73,Romania,22.5
+74,North Macedonia,22.4
+75,Colombia,22.3
+76,Germany,22.3
+77,Finland,22.2
+78,Belgium,22.1
+79,Brazil,22.1
+80,Iceland,21.9
+81,Cyprus,21.8
+82,Albania,21.7
+83,Georgia,21.7
+84,France,21.6
+85,Serbia,21.5
+86,Honduras,21.4
+87,Grenada,21.3
+88,Papua New Guinea,21.3
+89,Estonia,21.2
+90,Guatemala,21.2
+91,Kazakhstan,21
+92,Portugal,20.8
+93,Mongolia,20.6
+94,Sweden,20.6
+95,Slovakia,20.5
+96,Netherlands,20.4
+97,Paraguay,20.3
+98,Guyana,20.2
+99,Slovenia,20.2
+100,Armenia,20.2
+101,Bolivia,20.2
+102,Austria,20.1
+103,Azerbaijan,19.9
+104,Italy,19.9
+105,Ecuador,19.9
+106,Peru,19.7
+107,Saint Lucia,19.7
+108,Denmark,19.7
+109,Switzerland,19.5
+110,Antigua and Barbuda,18.9
+111,Botswana,18.9
+112,Moldova,18.9
+113,Trinidad and Tobago,18.6
+114,Turkmenistan,18.6
+115,Bosnia and Herzegovina,17.9
+116,Namibia,17.2
+117,Yemen,17.1
+118,Kyrgyzstan,16.6
+119,Lesotho,16.6
+120,Uzbekistan,16.6
+121,Eswatini,16.5
+122,Malaysia,15.6
+123,Zimbabwe,15.5
+124,Gabon,15
+125,Tajikistan,14.2
+126,Brunei,14.1
+127,Seychelles,14
+128,Djibouti,13.5
+129,Mauritania,12.7
+130,Sao Tome and Principe,12.4
+131,Cape Verde,11.8
+132,Cameroon,11.4
+133,Ghana,10.9
+134,Mauritius,10.8
+135,Gambia,10.3
+136,Ivory Coast,10.3
+137,Thailand,10
+138,Liberia,9.9
+139,Benin,9.6
+140,Republic of the Congo,9.6
+141,Guinea-Bissau,9.5
+142,Nigeria,8.9
+143,Senegal,8.8
+144,Sierra Leone,8.7
+145,Maldives,8.6
+146,Mali,8.6
+147,Pakistan,8.6
+148,Togo,8.4
+149,Tanzania,8.4
+150,Somalia,8.3
+151,Angola,8.2
+152,Zambia,8.1
+153,Equatorial Guinea,8
+154,Comoros,7.8
+155,Guinea,7.7
+156,Central African Republic,7.5
+157,Mozambique,7.2
+158,Kenya,7.1
+159,Indonesia,6.9
+160,North Korea,6.8
+161,Democratic Republic of the Congo,6.7
+162,Sudan,6.6
+163,South Sudan,6.6
+164,Bhutan,6.4
+165,Philippines,6.4
+166,China,6.2
+167,Singapore,6.1
+168,Chad,6.1
+169,Malawi,5.8
+170,Rwanda,5.8
+171,Burkina Faso,5.6
+172,Niger,5.5
+173,Afghanistan,5.5
+174,Burundi,5.4
+175,Madagascar,5.3
+176,Laos,5.3
+177,Uganda,5.3
+178,Sri Lanka,5.2
+179,Eritrea,5
+180,South Korea,4.7
+181,Ethiopia,4.5
+182,Japan,4.3
+183,Nepal,4.1
+184,Cambodia,3.9
+185,India,3.9
+186,Timor-Leste,3.8
+187,Bangladesh,3.6
+188,Vietnam,2.1
