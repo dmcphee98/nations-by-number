@@ -95,6 +95,11 @@
   background-color: #606060;
 }
 
+.SubmitButton.Active:active {
+  transform: scale(0.9);
+}
+
+
 @media screen and (orientation: landscape) {
   .CountryStatsContainer {
     width: 70vw;

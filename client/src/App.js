@@ -7,10 +7,13 @@ import "./App.css";
 function App() {
 
   const [userOrder, setUserOrder] = useState([]);
+  const [onResultsPage, setOnResultsPage] = useState(false);
   const [isPlayingGameA, setIsPlayingGameA] = useState(true);
   const [games, setGames] = useState([]);
   const [gameA, setGameA] = useState(undefined);
   const [gameB, setGameB] = useState(undefined);
+  const [answer, setAnswer] = useState(undefined);
+
 
   useEffect(() => {
     newGame();
@@ -20,11 +23,14 @@ function App() {
     if (!!!games || games.length == 0) {
       axios.get('https://g3w6hkwjmzejlbwk2p6dlnzz7y0kgpco.lambda-url.us-east-1.on.aws?n=5').then((response) => {
         let fetchedGames = response.data;
-        setGames(games => [...games, ...fetchedGames]);
+        setGames(games => [...fetchedGames]);
+        setAnswer(getAnswer(fetchedGames[0]));
         setIsPlayingGameA((isPlayingGameA, games) => !isPlayingGameA);
       });
     } else {
+      const newGame = games[1];
       setGames(games => games.slice(1));
+      setAnswer(getAnswer(newGame));
       setIsPlayingGameA((isPlayingGameA, games) => !isPlayingGameA);
       if (games.length <= 5) {
         axios.get('https://g3w6hkwjmzejlbwk2p6dlnzz7y0kgpco.lambda-url.us-east-1.on.aws?n=5').then((response) => {
@@ -36,6 +42,7 @@ function App() {
   }
 
   const onCountrySelect = (cid) => {
+    if (onResultsPage) return;
     const addToOrder = userOrder.length < 3 && !userOrder.includes(cid);
     if (addToOrder) {
       setUserOrder([...userOrder, cid]);
@@ -53,15 +60,19 @@ function App() {
     cidB = isLoading ? "NIL" : gameB?.rankings?.[n]?.cid;
 
     const currentCid = isPlayingGameA ? cidA : cidB;
+    console.log(currentCid);
+    console.log(answer);
 
     return (
       <CountryStat 
         key={n} 
-        isPlayingGameA={isPlayingGameA}
+        index={n}
         cidA={cidA} 
         cidB={cidB}
         userRanking={userOrder.indexOf(currentCid)+1} 
-        index={n}
+        answer={answer?.indexOf(currentCid)+1}
+        isPlayingGameA={isPlayingGameA}
+        onResultsPage={onResultsPage}
         onClick={() => onCountrySelect(currentCid)}
       />
     )
@@ -84,11 +95,32 @@ function App() {
     }
   }
 
-  const onSubmit = () => {
+  const getAnswer = (game) => {
+    if (!!!game) return [];
+    const rankingsCopy = [...game.rankings];
+    rankingsCopy.sort((a, b) => standardSort(a.rank, b.rank));
+    const answer = [rankingsCopy[0].cid, rankingsCopy[1].cid, rankingsCopy[2].cid];
+    return(answer);
+  }
+
+  const standardSort = (nameA, nameB) => {
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+      return 0;  
+  }
+
+  const onSubmit = async () => {
     console.log("Submitted");
     if (userOrder.length === 3) {
-      newGame();
-      setUserOrder([]);
+      if (onResultsPage) {
+        newGame();
+        setUserOrder([]);  
+      }
+      setOnResultsPage(!onResultsPage);
     }
   }
 
@@ -123,7 +155,7 @@ function App() {
             className={`SubmitButton ${games.length > 0 && userOrder.length === 3 ? "Active" : "Inactive"} NoTextHighlight`}
             onClick={onSubmit}
           >
-            SUBMIT
+            {onResultsPage ? 'NEXT' : 'SUBMIT'}
           </div>
         </div>
     </div>

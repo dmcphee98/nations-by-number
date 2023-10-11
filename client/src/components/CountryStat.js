@@ -8,7 +8,7 @@ import Globe from "./Globe";
 
 import "./CountryStat.css";
 
-function CountryStat({ cidA, cidB, isPlayingGameA, userRanking, index, onClick }) {
+function CountryStat({ index, cidA, cidB, userRanking, answer, onResultsPage, isPlayingGameA, onClick }) {
 
   const [prevUserRanking, setPrevUserRanking] = useState(-1); 
   const [rotation, setRotation] = useState(0);
@@ -16,7 +16,8 @@ function CountryStat({ cidA, cidB, isPlayingGameA, userRanking, index, onClick }
 
   const localOnClick = () => {
     setPrevUserRanking((prevUserRanking) => {return userRanking;})
-    if (userRanking === 0) setRotation((rotation) => {return getRandomInt(-18, 18)});
+    //if (userRanking === 0) setRotation((rotation) => {return getRandomInt(-18, 18)});
+    if (userRanking === 0) setRotation(2);
     onClick();
   }
 
@@ -63,6 +64,15 @@ function CountryStat({ cidA, cidB, isPlayingGameA, userRanking, index, onClick }
 
   return (
     <div className={`CountryStat ${cidA === "NIL" ? 'Loading' : 'Loaded'}`}>
+      <img className={`Result Tick ${onResultsPage && userRanking === answer ? 'Visible' : 'Invisible'}`} 
+        src={require("../images/Tick.png")} 
+        alt="Tick"  
+      />
+      <img className={`Result Cross ${onResultsPage && userRanking !== answer ? 'Visible' : 'Invisible'}`} 
+        src={require("../images/Cross.png")} 
+        alt="Cross"  
+      />
+
       <div className="Card">
         <img src={require(`../images/CardStack${index}.png`)} alt="" className="CardStack" />
         <div className={`CardFace Top ${isPlayingGameA ? 'FaceUp' : 'FaceDown'}`}>
