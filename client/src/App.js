@@ -69,6 +69,7 @@ function App() {
         cidA={cidA} 
         cidB={cidB}
         userRanking={userOrder.indexOf(currentCid)+1} 
+        index={n}
         onClick={() => onCountrySelect(currentCid)}
       />
     )

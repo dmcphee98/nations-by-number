@@ -8,7 +8,7 @@ import Globe from "./Globe";
 
 import "./CountryStat.css";
 
-function CountryStat({ cidA, cidB, isPlayingGameA, userRanking, onClick }) {
+function CountryStat({ cidA, cidB, isPlayingGameA, userRanking, index, onClick }) {
 
   const [prevUserRanking, setPrevUserRanking] = useState(-1); 
   const [rotation, setRotation] = useState(0);
@@ -64,8 +64,9 @@ function CountryStat({ cidA, cidB, isPlayingGameA, userRanking, onClick }) {
   return (
     <div className={`CountryStat ${cidA === "NIL" ? 'Loading' : 'Loaded'}`}>
       <div className="Card">
+        <img src={require(`../images/CardStack${index}.png`)} alt="" className="CardStack" />
         <div className={`CardFace Top ${isPlayingGameA ? 'FaceUp' : 'FaceDown'}`}>
-          <img className="Border"src={require("../images/CardBorder4.png")}/>
+          <img className="Border"src={require("../images/CardBorder2.png")}/>
           <Flag cid={cidA} onClick={localOnClick}/>
           { cidA === "NIL" &&
             <Globe />
@@ -73,7 +74,7 @@ function CountryStat({ cidA, cidB, isPlayingGameA, userRanking, onClick }) {
           {renderStamp("A")}
         </div>
         <div className={`CardFace Bottom ${isPlayingGameA ? 'FaceDown' : 'FaceUp'}`}>
-          <img className="Border" src={require("../images/CardBorder4.png")}/>
+          <img className="Border" src={require("../images/CardBorder2.png")}/>
           <Flag cid={cidB} onClick={localOnClick}/>
           {renderStamp("B")}
         </div>
