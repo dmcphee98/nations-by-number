@@ -1,10 +1,22 @@
 .Globe {
-	height: 3.2vw;  
-	width: 3.2vw;
     position: absolute;  
 	margin: 0;
 	top: 31%; 
 	left: 40%;
+}
+
+@media screen and (orientation: landscape) {
+	.Globe {
+		height: 5.5vh;  
+		width: 5.5vh;
+	}
+}
+
+@media screen and (orientation: portrait) {
+	.Globe {
+		height: 8vw;  
+		width: 8vw;
+	}
 }
 
 .Globe .WorldMap {

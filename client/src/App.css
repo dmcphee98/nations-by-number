@@ -10,6 +10,21 @@
   font-family: 'Germania One', cursive;
 }
 
+.App > .Title {
+  font-family: 'Lexend', sans-serif;    
+  opacity: 0.5;
+}
+
+.NoTextHighlight {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
 .CountryStatsContainer {
   display: flex;
 }
@@ -42,44 +57,96 @@
 }
 
 .LeafContainer img {
-  height: 45%;
+  height: 9vh;
+}
+
+.SubmitButtonContainer {
+  width: 20vh;
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3b3b3b;
+}
+
+.SubmitButton {
+  height: 130%;
+  width: 75%;
+  background-color: #5c5c5c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Lexend', sans-serif;    
+  letter-spacing: 0.35vh;
+  font-size: 2vh;
+  cursor: pointer;
+  transition: scale 0.5s ease, background-color 0.5s ease, color 0.5s ease, transform 0.1s ease;
+}
+
+.SubmitButton.Inactive {
+  scale : 0.75;
+  background-color: #3b3b3b;
+  cursor: not-allowed;
+  color: #aaaaaa;
+}
+
+.SubmitButton.Active:hover {
+  transform: scale(1.05);
+  background-color: #606060;
 }
 
 @media screen and (orientation: landscape) {
   .CountryStatsContainer {
-    width: 60%;
-    height: 13vw;
+    width: 70vw;
+    max-width: 110vh;
+    min-width: 90vh;
+    height: 22vh;
     flex-direction: row;
     justify-content: space-evenly;
-    padding-bottom: 12vh;
+    padding-bottom: 16vh;
   }
   .QuestionContainer {
-    font-size: 3vw;
+    font-size: 5vh;
     padding-bottom: 8vh;
   }
-  .Title {
-    font-size: 1vw;
+  .App > .Title {
+    font-size: 2vh;
     padding-bottom: 2vh;
-    font-family: 'Lexend', sans-serif;    
-    opacity: 0.5;
-    letter-spacing: 0.15vw;
+    letter-spacing: 0.35vh;
   }
 }
 
 @media screen and (orientation: portrait) {
   .CountryStatsContainer {
-    height: 70%;
-    flex-direction: column;
+    width: 90vw;
+    height: 38vh;
+    flex-wrap: wrap;
     justify-content: space-around;
   }
-  .QuestionContainer {
-    font-size: 8vw;
-    padding-bottom: 2vh;
+  .CountryStatsContainer .CountryStat {
+    flex: 50%
   }
+  .QuestionContainer {
+    font-size: 7vw;
+    padding-bottom: 4vh;
+  }
+  .LeafContainer {
+    height: 0%;
+  }
+  
+  .LeafContainer img {
+    height: 0%;
+  }
+  .App > .Title {
+    font-size: 3vw;
+    padding-bottom: 2vh;
+    letter-spacing: 0.35vh;
+  }
+
 }
 
 img.Compass {
   opacity: 0.2;
-  height: 5vw;
+  height: 10vh;
 }
 

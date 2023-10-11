@@ -15,14 +15,6 @@ function App() {
   useEffect(() => {
     newGame();
   }, []);
-
-  useEffect(() => {
-    console.log(userOrder)
-    if (userOrder.length === 3) {
-      newGame();
-      setUserOrder([]);
-    }
-  }, [userOrder]);
   
   const newGame = async () => {
     if (!!!games || games.length == 0) {
@@ -48,7 +40,7 @@ function App() {
     if (addToOrder) {
       setUserOrder([...userOrder, cid]);
     }
-    const removeFromOrder = userOrder.length < 3 && userOrder[userOrder.length-1] === cid; 
+    const removeFromOrder = userOrder[userOrder.length-1] === cid; 
     if (removeFromOrder) {
       setUserOrder(userOrder.slice(0, userOrder.length-1));
     }
@@ -92,6 +84,14 @@ function App() {
     }
   }
 
+  const onSubmit = () => {
+    console.log("Submitted");
+    if (userOrder.length === 3) {
+      newGame();
+      setUserOrder([]);
+    }
+  }
+
   return (
     <div className="App" >
       <img className="Compass" src={require("./images/Compass.png")}/>
@@ -107,17 +107,25 @@ function App() {
           <Ellipsis />
         }
       </div>
-          <div className="CountryStatsContainer">
-            {getCountryStat(0)}
-            <div className="LeafContainer">
-              <img src={require("./images/LeafUp.png")}/>
-            </div>
-            {getCountryStat(1)}
-            <div className="LeafContainer">
-              <img src={require("./images/LeafDown.png")}/>
-            </div>
-            {getCountryStat(2)}
+        <div className="CountryStatsContainer">
+          {getCountryStat(0)}
+          <div className="LeafContainer">
+            <img src={require("./images/LeafUp.png")}/>
           </div>
+          {getCountryStat(1)}
+          <div className="LeafContainer">
+            <img src={require("./images/LeafDown.png")}/>
+          </div>
+          {getCountryStat(2)}
+        </div>
+        <div className="SubmitButtonContainer">
+          <div 
+            className={`SubmitButton ${games.length > 0 && userOrder.length === 3 ? "Active" : "Inactive"} NoTextHighlight`}
+            onClick={onSubmit}
+          >
+            SUBMIT
+          </div>
+        </div>
     </div>
   );
 }

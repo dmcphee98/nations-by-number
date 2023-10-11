@@ -128,24 +128,15 @@
     } 
 }
 
-@media screen and (orientation: landscape) and (min-width: 768px) {
+@media screen and (orientation: landscape) {
     .CountryStat .Name {
-        font-size: 2vw;
+        font-size: 3vh;
     }
 }
   
-@media screen and (orientation: landscape) and (max-height: 768px) {
-    .CountryStat {
-        height: 12vw;
-    }
-    .CountryStat .Name {
-        font-size: 2vw;
-    }
-}
-
 @media screen and (orientation: portrait) {
     .CountryStat {
-        height: 16vh;
+        height: 32vw;
     }
     .CountryStat .Name {
         font-size: 3vh;
