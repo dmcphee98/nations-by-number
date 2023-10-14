@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/nation-ranker/static/css/main.09ae808f.css",
-    "main.js": "/nation-ranker/static/js/main.78562133.js",
+    "main.css": "/nation-ranker/static/css/main.436b96df.css",
+    "main.js": "/nation-ranker/static/js/main.bb5edf05.js",
     "static/media/GUY.png": "/nation-ranker/static/media/GUY.a57ecfd3097e006ed8ea.png",
     "static/media/IOT.png": "/nation-ranker/static/media/IOT.e5db2cdc783b9c9d849e.png",
+    "static/media/TokenRed.png": "/nation-ranker/static/media/TokenRed.1e0f8721f1a5ba3e3d07.png",
+    "static/media/TokenGreen.png": "/nation-ranker/static/media/TokenGreen.854a58979acabed100e0.png",
     "static/media/KIR.png": "/nation-ranker/static/media/KIR.24e505fb82cbce862d34.png",
+    "static/media/TokenGray.png": "/nation-ranker/static/media/TokenGray.cef52e1cf0d566d7976c.png",
     "static/media/MHL.png": "/nation-ranker/static/media/MHL.f6cb3dc3e7f64cf70642.png",
-    "static/media/Second.png": "/nation-ranker/static/media/Second.40ae66b82f8e085ca6c0.png",
     "static/media/GRD.png": "/nation-ranker/static/media/GRD.ee9d6193701a5919e9ea.png",
     "static/media/BIH.png": "/nation-ranker/static/media/BIH.4930857fa50c10b00a03.png",
-    "static/media/Third.png": "/nation-ranker/static/media/Third.21692707ec4e1bf45d38.png",
-    "static/media/First.png": "/nation-ranker/static/media/First.10d424474bddd4c818d4.png",
     "static/media/VUT.png": "/nation-ranker/static/media/VUT.3e8d35684b99b632c84b.png",
     "static/media/Compass.png": "/nation-ranker/static/media/Compass.7b04403f68ec26620f50.png",
     "static/media/BRN.png": "/nation-ranker/static/media/BRN.a4136ba3817ed306c09c.png",
@@ -103,11 +103,11 @@
     "static/media/WSM.png": "/nation-ranker/static/media/WSM.877679415d87665605f8.png",
     "static/media/BTN.png": "/nation-ranker/static/media/BTN.7633380e7e1e696ae7e0.png",
     "index.html": "/nation-ranker/index.html",
-    "main.09ae808f.css.map": "/nation-ranker/static/css/main.09ae808f.css.map",
-    "main.78562133.js.map": "/nation-ranker/static/js/main.78562133.js.map"
+    "main.436b96df.css.map": "/nation-ranker/static/css/main.436b96df.css.map",
+    "main.bb5edf05.js.map": "/nation-ranker/static/js/main.bb5edf05.js.map"
   },
   "entrypoints": [
-    "static/css/main.09ae808f.css",
-    "static/js/main.78562133.js"
+    "static/css/main.436b96df.css",
+    "static/js/main.bb5edf05.js"
   ]
 }
