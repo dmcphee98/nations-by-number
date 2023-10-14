@@ -1,92 +1,87 @@
 import React, { useState, useEffect } from 'react';
 import Flag from "./Flag";
 import decodeAlpha03 from "./Alpha03Decoder";
-import firstStamp from "../images/First.png";
-import secondStamp from "../images/Second.png";
-import thirdStamp from "../images/Third.png";
+import tokenGray from "../images/TokenGray.png";
+import tokenGreen from "../images/TokenGreen.png";
+import tokenRed from "../images/TokenRed.png";
+import tick from "../images/Tick.png";
+import cross from "../images/Cross.png";
 import Globe from "./Globe";
 
 import "./CountryStat.css";
 
 function CountryStat({ index, cidA, cidB, userRanking, answer, onResultsPage, isPlayingGameA, onClick }) {
 
-  const [prevUserRanking, setPrevUserRanking] = useState(-1); 
-  const [rotation, setRotation] = useState(0);
-  const stamps = [firstStamp, secondStamp, thirdStamp];
+  const [prevUserRanking, setPrevUserRanking] = useState(-1);
+  const [showResult, setShowResult] = useState(false);
+
+  const values = {11: 30, 12: 29, 13: 28, 21: 32, 22: 31, 23: 31, 31: 35, 32: 33, 33: 33};
+  const numPosAdjustments = new Map(Object.entries(values));
 
   const localOnClick = () => {
     setPrevUserRanking((prevUserRanking) => {return userRanking;})
-    //if (userRanking === 0) setRotation((rotation) => {return getRandomInt(-18, 18)});
-    if (userRanking === 0) setRotation(2);
     onClick();
   }
 
-  const getStampImgSrc = () => { 
-    if (userRanking > 0) {
-      return stamps[userRanking-1];
-    }
-    if (prevUserRanking > 0) {
-      return stamps[prevUserRanking-1];    
-    }
-    return null;
-  }
+  useEffect(() => {
+    setShowResult(onResultsPage);
+  }, [onResultsPage]);
 
-  const getRandomInt = (min, max) => {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min) + min);
-  }
 
-  const renderStamp = (game) => {
+  const renderToken = (game) => {
     if (isPlayingGameA && game === "B") return;
     if (!isPlayingGameA && game === "A") return;
 
     return (
-      <div className="StampContainer">
-        <img 
-          className={`Stamp ${userRanking === 1 ? 'Visible' : 'Invisible'}`} 
-          src={firstStamp}
-          style={{rotate: `${rotation}deg`}}
-        />
-        <img 
-          className={`Stamp ${userRanking === 2 ? 'Visible' : 'Invisible'}`} 
-          src={secondStamp}
-          style={{rotate: `${rotation}deg`}}
-        />
-        <img 
-          className={`Stamp ${userRanking === 3 ? 'Visible' : 'Invisible'}`} 
-          src={thirdStamp}
-          style={{rotate: `${rotation}deg`}}
-        />
+      <div className={`TokenContainer ${onResultsPage ? 'Hoverable' : ''}`}>
+        <div 
+          className={`Token ${userRanking > 0 ? 'Visible' : 'Invisible'} ${showResult ? 'Flipped' : ''}`} 
+          style={{
+            paddingLeft: `${numPosAdjustments.get(String(index+1) + userRanking)}%`
+          }}
+          onClick={() => {if (onResultsPage) {setShowResult(!showResult)};}} 
+        >
+          <img src={tokenGray} alt="" style={{rotate: `${(index-1)*55}deg`}} />
+          <h1 style={{rotate: '0deg'}}>
+            {userRanking === 0 ? prevUserRanking : userRanking}
+          </h1>
+        </div>
+        <div 
+          className={`Token ${userRanking > 0 ? 'Visible' : 'Invisible'} ${showResult ? '' : 'Flipped'}`} 
+          style={{
+            paddingLeft: `${numPosAdjustments.get(String(index+1) + userRanking)}%`
+          }}
+          onClick={() => {if (onResultsPage) {setShowResult(!showResult)};}}
+        >
+          <img src={userRanking === answer ? tokenGreen : tokenRed} alt="" style={{rotate: `${(index-1)*55}deg`}} />
+          <img 
+            className="CrossTick" 
+            src={userRanking === answer ? tick : cross} 
+            alt={userRanking === answer ? 'Tick' : 'Cross'} 
+            style={{left: `${50+(index-1)*3}%`}}
+          />
+        </div>
+
       </div>
     )
   }
 
   return (
     <div className={`CountryStat ${cidA === "NIL" ? 'Loading' : 'Loaded'}`}>
-      <img className={`Result Tick ${onResultsPage && userRanking === answer ? 'Visible' : 'Invisible'}`} 
-        src={require("../images/Tick.png")} 
-        alt="Tick"  
-      />
-      <img className={`Result Cross ${onResultsPage && userRanking !== answer ? 'Visible' : 'Invisible'}`} 
-        src={require("../images/Cross.png")} 
-        alt="Cross"  
-      />
-
       <div className="Card">
         <img src={require(`../images/CardStack${index}.png`)} alt="" className="CardStack" />
-        <div className={`CardFace Top ${isPlayingGameA ? 'FaceUp' : 'FaceDown'}`}>
+        <div className={`CardFace Top ${isPlayingGameA ? 'FaceUp' : 'FaceDown'} ${onResultsPage ? '' : 'Hoverable'}`}>
           <img className="Border"src={require("../images/CardBorder2.png")}/>
           <Flag cid={cidA} onClick={localOnClick}/>
           { cidA === "NIL" &&
             <Globe />
           }
-          {renderStamp("A")}
+          {renderToken("A")}
         </div>
-        <div className={`CardFace Bottom ${isPlayingGameA ? 'FaceDown' : 'FaceUp'}`}>
+        <div className={`CardFace Bottom ${isPlayingGameA ? 'FaceDown' : 'FaceUp'} ${onResultsPage ? '' : 'Hoverable'}`}>
           <img className="Border" src={require("../images/CardBorder2.png")}/>
           <Flag cid={cidB} onClick={localOnClick}/>
-          {renderStamp("B")}
+          {renderToken("B")}
         </div>
       </div>
       <div className={`Name Top ${isPlayingGameA ? '' : 'Hidden'}`}>{!!cidA ? decodeAlpha03(cidA).toUpperCase() : ""}</div>
