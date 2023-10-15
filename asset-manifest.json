@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/nation-ranker/static/css/main.436b96df.css",
-    "main.js": "/nation-ranker/static/js/main.bb5edf05.js",
+    "main.css": "/nation-ranker/static/css/main.2b9d023d.css",
+    "main.js": "/nation-ranker/static/js/main.fa993782.js",
     "static/media/GUY.png": "/nation-ranker/static/media/GUY.a57ecfd3097e006ed8ea.png",
     "static/media/IOT.png": "/nation-ranker/static/media/IOT.e5db2cdc783b9c9d849e.png",
     "static/media/TokenRed.png": "/nation-ranker/static/media/TokenRed.1e0f8721f1a5ba3e3d07.png",
@@ -103,11 +103,11 @@
     "static/media/WSM.png": "/nation-ranker/static/media/WSM.877679415d87665605f8.png",
     "static/media/BTN.png": "/nation-ranker/static/media/BTN.7633380e7e1e696ae7e0.png",
     "index.html": "/nation-ranker/index.html",
-    "main.436b96df.css.map": "/nation-ranker/static/css/main.436b96df.css.map",
-    "main.bb5edf05.js.map": "/nation-ranker/static/js/main.bb5edf05.js.map"
+    "main.2b9d023d.css.map": "/nation-ranker/static/css/main.2b9d023d.css.map",
+    "main.fa993782.js.map": "/nation-ranker/static/js/main.fa993782.js.map"
   },
   "entrypoints": [
-    "static/css/main.436b96df.css",
-    "static/js/main.bb5edf05.js"
+    "static/css/main.2b9d023d.css",
+    "static/js/main.fa993782.js"
   ]
 }
