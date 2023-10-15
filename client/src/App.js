@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import CountryStat from "./components/CountryStat";
+import decodeAlpha03 from "./components/Alpha03Decoder";
 import Ellipsis from './components/Ellipsis';
 import "./App.css";
 
@@ -12,6 +13,7 @@ function App() {
   const [games, setGames] = useState([]);
   const [gameA, setGameA] = useState(undefined);
   const [gameB, setGameB] = useState(undefined);
+  const [currentGame, setCurrentGame] = useState(undefined);
   const [answer, setAnswer] = useState(undefined);
 
 
@@ -25,6 +27,7 @@ function App() {
         let fetchedGames = response.data;
         setGames(games => [...fetchedGames]);
         setAnswer(getAnswer(fetchedGames[0]));
+        setCurrentGame(fetchedGames[0]);
         setIsPlayingGameA((isPlayingGameA, games) => !isPlayingGameA);
       });
     } else {
@@ -38,6 +41,8 @@ function App() {
           setGames(games => [...games, ...fetchedGames]);
         });
       }
+      await new Promise(resolve => setTimeout(resolve, 500));
+      setCurrentGame(newGame);
     }
   }
 
@@ -116,23 +121,70 @@ function App() {
   const onSubmit = async () => {
     console.log("Submitted");
     if (userOrder.length === 3) {
-      if (onResultsPage) {
+      const cachedOnResultsPage = onResultsPage;
+      setOnResultsPage(!onResultsPage);
+      if (cachedOnResultsPage) {
         newGame();
         setUserOrder([]);  
       }
-      setOnResultsPage(!onResultsPage);
     }
+  }
+
+  const getOrdinal = (num) => {
+    const finalNum = num % 10;
+    switch (finalNum) {
+      case 1:
+        return 'st';
+      case 2: 
+        return 'nd';
+      case 3:
+        return 'rd';
+      default:
+        return 'th';
+    } 
+  }
+
+  const renderTable = () => {
+    if (!!!currentGame) return;
+
+    const rankings = [...currentGame.rankings];
+    rankings.sort((a, b) => standardSort(a.rank, b.rank));
+
+    console.log(rankings);
+    return (
+      <table className={`AnswerTable ${onResultsPage ? "Visible" : "Hidden"}`}>
+      <tr>
+        <th>RANK</th>
+        <th>NATION</th>
+        <th>STAT {!!currentGame.units ? `( ${currentGame.units} )` : ''}</th>
+      </tr>
+      {rankings.map((ranking, index) => {
+        return (
+          <tr>
+            <td>
+              {ranking.rank}
+              <span style={{fontSize: '1.3vh'}}>
+                {getOrdinal(ranking.rank)}
+              </span>
+            </td>
+            <td>{decodeAlpha03(ranking.cid)}</td>
+            <td>{ranking.datum}</td>
+          </tr>
+        );
+      })}
+    </table>
+    );
   }
 
   return (
     <div className="App" >
-      <img className="Compass" src={require("./images/Compass.png")}/>
-      <div className="Title">{"\u2022"} WHICH COUNTRY HAS THE {"\u2022"}</div>
+      <img className="Compass NoDrag" src={require("./images/Compass.png")}/>
+      <div className="Title NoTextHighlight">{"\u2022"} WHICH NATION HAS THE {"\u2022"}</div>
       <div className="QuestionContainer">
         { !!games[0] &&
         <>
-          <div className={`Question Top ${isPlayingGameA ? "" : "Hidden"}`}>{!!gameA ? gameA.name.toUpperCase() : ""}</div>
-          <div className={`Question Bottom ${isPlayingGameA ? "Hidden" : ""}`}>{!!gameB ? gameB.name.toUpperCase() : ""}</div>
+          <div className={`Question Top ${isPlayingGameA ? "" : "Hidden"} NoTextHighlight`}>{!!gameA ? gameA.name.toUpperCase() : ""}</div>
+          <div className={`Question Bottom ${isPlayingGameA ? "Hidden" : ""} NoTextHighlight`}>{!!gameB ? gameB.name.toUpperCase() : ""}</div>
         </>
         }
         { !!!games[0] &&
@@ -142,22 +194,25 @@ function App() {
         <div className="CountryStatsContainer">
           {getCountryStat(0)}
           <div className="LeafContainer">
-            <img src={require("./images/LeafUp.png")}/>
+            <img className="NoDrag" src={require("./images/LeafUp.png")}/>
           </div>
           {getCountryStat(1)}
           <div className="LeafContainer">
-            <img src={require("./images/LeafDown.png")}/>
+            <img className="NoDrag" src={require("./images/LeafDown.png")}/>
           </div>
           {getCountryStat(2)}
         </div>
-        <div className="SubmitButtonContainer">
-          <div 
-            className={`SubmitButton ${games.length > 0 && userOrder.length === 3 ? "Active" : "Inactive"} NoTextHighlight`}
-            onClick={onSubmit}
-          >
-            {onResultsPage ? 'NEXT' : 'SUBMIT'}
+        <div className="PageBottom">
+          {renderTable()}
+          <div className={`SubmitButtonContainer ${onResultsPage ? 'Next' : 'Submit'}`}>
+            <div 
+              className={`SubmitButton ${games.length > 0 && userOrder.length === 3 ? "Active" : "Inactive"} NoTextHighlight`}
+              onClick={onSubmit}
+            >
+              {onResultsPage ? 'NEXT' : 'SUBMIT'}
+            </div>
           </div>
-        </div>
+          </div>
     </div>
   );
 }

@@ -42,7 +42,7 @@ function CountryStat({ index, cidA, cidB, userRanking, answer, onResultsPage, is
           onClick={() => {if (onResultsPage) {setShowResult(!showResult)};}} 
         >
           <img src={tokenGray} alt="" style={{rotate: `${(index-1)*55}deg`}} />
-          <h1 style={{rotate: '0deg'}}>
+          <h1 className="NoTextHighlight" style={{rotate: '0deg'}}>
             {userRanking === 0 ? prevUserRanking : userRanking}
           </h1>
         </div>
@@ -53,9 +53,9 @@ function CountryStat({ index, cidA, cidB, userRanking, answer, onResultsPage, is
           }}
           onClick={() => {if (onResultsPage) {setShowResult(!showResult)};}}
         >
-          <img src={userRanking === answer ? tokenGreen : tokenRed} alt="" style={{rotate: `${(index-1)*55}deg`}} />
+          <img className="NoDrag" src={userRanking === answer ? tokenGreen : tokenRed} alt="" style={{rotate: `${(index-1)*55}deg`}} />
           <img 
-            className="CrossTick" 
+            className="CrossTick NoDrag" 
             src={userRanking === answer ? tick : cross} 
             alt={userRanking === answer ? 'Tick' : 'Cross'} 
             style={{left: `${50+(index-1)*3}%`}}
@@ -70,7 +70,7 @@ function CountryStat({ index, cidA, cidB, userRanking, answer, onResultsPage, is
     <div className={`CountryStat ${cidA === "NIL" ? 'Loading' : 'Loaded'}`}>
       <div className="Card">
         <img src={require(`../images/CardStack${index}.png`)} alt="" className="CardStack" />
-        <div className={`CardFace Top ${isPlayingGameA ? 'FaceUp' : 'FaceDown'} ${onResultsPage ? '' : 'Hoverable'}`}>
+        <div className={`CardFace Top ${isPlayingGameA ? 'FaceUp' : 'FaceDown'} ${onResultsPage ? '' : 'Hoverable'} NoTextHighlight NoDrag`}>
           <img className="Border"src={require("../images/CardBorder2.png")}/>
           <Flag cid={cidA} onClick={localOnClick}/>
           { cidA === "NIL" &&
@@ -78,14 +78,14 @@ function CountryStat({ index, cidA, cidB, userRanking, answer, onResultsPage, is
           }
           {renderToken("A")}
         </div>
-        <div className={`CardFace Bottom ${isPlayingGameA ? 'FaceDown' : 'FaceUp'} ${onResultsPage ? '' : 'Hoverable'}`}>
+        <div className={`CardFace Bottom ${isPlayingGameA ? 'FaceDown' : 'FaceUp'} ${onResultsPage ? '' : 'Hoverable'} NoTextHighlight NoDrag`}>
           <img className="Border" src={require("../images/CardBorder2.png")}/>
           <Flag cid={cidB} onClick={localOnClick}/>
           {renderToken("B")}
         </div>
       </div>
-      <div className={`Name Top ${isPlayingGameA ? '' : 'Hidden'}`}>{!!cidA ? decodeAlpha03(cidA).toUpperCase() : ""}</div>
-      <div className={`Name Bottom ${isPlayingGameA ? 'Hidden' : ''}`}>{!!cidB ? decodeAlpha03(cidB).toUpperCase() : ""}</div>
+      <div className={`Name Top ${isPlayingGameA ? '' : 'Hidden'} NoTextHighlight`}>{!!cidA ? decodeAlpha03(cidA).toUpperCase() : ""}</div>
+      <div className={`Name Bottom ${isPlayingGameA ? 'Hidden' : ''} NoTextHighlight`}>{!!cidB ? decodeAlpha03(cidB).toUpperCase() : ""}</div>
     </div>
   )
 }
