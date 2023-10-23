@@ -1,13 +1,15 @@
 {
   "files": {
-    "main.css": "/nation-ranker/static/css/main.2b9d023d.css",
-    "main.js": "/nation-ranker/static/js/main.fa993782.js",
+    "main.css": "/nation-ranker/static/css/main.384835db.css",
+    "main.js": "/nation-ranker/static/js/main.3395cba1.js",
     "static/media/GUY.png": "/nation-ranker/static/media/GUY.a57ecfd3097e006ed8ea.png",
     "static/media/IOT.png": "/nation-ranker/static/media/IOT.e5db2cdc783b9c9d849e.png",
     "static/media/TokenRed.png": "/nation-ranker/static/media/TokenRed.1e0f8721f1a5ba3e3d07.png",
     "static/media/TokenGreen.png": "/nation-ranker/static/media/TokenGreen.854a58979acabed100e0.png",
     "static/media/KIR.png": "/nation-ranker/static/media/KIR.24e505fb82cbce862d34.png",
     "static/media/TokenGray.png": "/nation-ranker/static/media/TokenGray.cef52e1cf0d566d7976c.png",
+    "static/media/StreakIcon.png": "/nation-ranker/static/media/StreakIcon.fdf43d3e41fe31fa7aa1.png",
+    "static/media/SourceIcon.png": "/nation-ranker/static/media/SourceIcon.ead35debf42db1074a5e.png",
     "static/media/MHL.png": "/nation-ranker/static/media/MHL.f6cb3dc3e7f64cf70642.png",
     "static/media/GRD.png": "/nation-ranker/static/media/GRD.ee9d6193701a5919e9ea.png",
     "static/media/BIH.png": "/nation-ranker/static/media/BIH.4930857fa50c10b00a03.png",
@@ -103,11 +105,11 @@
     "static/media/WSM.png": "/nation-ranker/static/media/WSM.877679415d87665605f8.png",
     "static/media/BTN.png": "/nation-ranker/static/media/BTN.7633380e7e1e696ae7e0.png",
     "index.html": "/nation-ranker/index.html",
-    "main.2b9d023d.css.map": "/nation-ranker/static/css/main.2b9d023d.css.map",
-    "main.fa993782.js.map": "/nation-ranker/static/js/main.fa993782.js.map"
+    "main.384835db.css.map": "/nation-ranker/static/css/main.384835db.css.map",
+    "main.3395cba1.js.map": "/nation-ranker/static/js/main.3395cba1.js.map"
   },
   "entrypoints": [
-    "static/css/main.2b9d023d.css",
-    "static/js/main.fa993782.js"
+    "static/css/main.384835db.css",
+    "static/js/main.3395cba1.js"
   ]
 }
