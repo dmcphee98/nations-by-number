@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import CountryStat from "./components/CountryStat";
 import decodeAlpha03 from "./components/Alpha03Decoder";
-import Ellipsis from './components/Ellipsis';
+import Ellipsis from "./components/Ellipsis";
+import { Tooltip } from "react-tooltip";
 import "./App.css";
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
   const [gameB, setGameB] = useState(undefined);
   const [currentGame, setCurrentGame] = useState(undefined);
   const [answer, setAnswer] = useState(undefined);
-
+  const [streak, setStreak] = useState(0);
 
   useEffect(() => {
     newGame();
@@ -126,6 +127,13 @@ function App() {
       if (cachedOnResultsPage) {
         newGame();
         setUserOrder([]);  
+      } else {
+        // Update streak
+        if (answer.toString() === userOrder.toString()) {
+          setStreak(streak+1);
+        } else {
+          setStreak(0);
+        }
       }
     }
   }
@@ -156,7 +164,7 @@ function App() {
       <tr>
         <th>RANK</th>
         <th>NATION</th>
-        <th>STAT {!!currentGame.units ? `( ${currentGame.units} )` : ''}</th>
+        <th>STAT</th>
       </tr>
       {rankings.map((ranking, index) => {
         return (
@@ -183,8 +191,15 @@ function App() {
       <div className="QuestionContainer">
         { !!games[0] &&
         <>
-          <div className={`Question Top ${isPlayingGameA ? "" : "Hidden"} NoTextHighlight`}>{!!gameA ? gameA.name.toUpperCase() : ""}</div>
-          <div className={`Question Bottom ${isPlayingGameA ? "Hidden" : ""} NoTextHighlight`}>{!!gameB ? gameB.name.toUpperCase() : ""}</div>
+          <div className={`Question Top ${isPlayingGameA ? "" : "Hidden"} NoTextHighlight`}>{!!gameA ? gameA.name.toUpperCase() : ""}
+            {!!currentGame?.units && <img className="InfoIcon" src={require("./images/InfoIcon.png")}/> }
+          </div>
+          <div className={`Question Bottom ${isPlayingGameA ? "Hidden" : ""} NoTextHighlight`}>{!!gameB ? gameB.name.toUpperCase() : ""}
+            {!!currentGame?.units && <img className="InfoIcon" src={require("./images/InfoIcon.png")}/> }
+          </div>
+          <Tooltip className='Tooltip' anchorSelect='.InfoIcon' place="right">
+              {currentGame?.units}
+            </Tooltip>
         </>
         }
         { !!!games[0] &&
@@ -205,12 +220,22 @@ function App() {
         <div className="PageBottom">
           {renderTable()}
           <div className={`SubmitButtonContainer ${onResultsPage ? 'Next' : 'Submit'}`}>
+          <div className={`StreakIcon ${onResultsPage ? "Visible" : "Hidden"}`}>
+            <img className={`StreakIcon NoDrag `} src={require("./images/StreakIcon.png")}/>
+            <p>{streak}</p>
+            </div>
             <div 
               className={`SubmitButton ${games.length > 0 && userOrder.length === 3 ? "Active" : "Inactive"} NoTextHighlight`}
               onClick={onSubmit}
             >
               {onResultsPage ? 'NEXT' : 'SUBMIT'}
             </div>
+            <a 
+              className="SourceIcon" 
+              href={onResultsPage ? currentGame.source : "#"}
+            >
+              <img className={`SourceIcon NoDrag ${onResultsPage ? "Visible" : "Hidden"}`} src={require("./images/SourceIcon.png")}/>
+            </a>
           </div>
           </div>
     </div>

@@ -51,7 +51,7 @@ const decodeAlpha03 = (code) => {
         case "ATF":
             return "French Southern Territories";
         case "ATG":
-            return "Antigua and Barbuda";
+            return "Antigua & Barbuda";
         case "AUS":
             return "Australia";
         case "AUT":
@@ -77,7 +77,7 @@ const decodeAlpha03 = (code) => {
         case "BHS":
             return "Bahamas";
         case "BIH":
-            return "Bosnia and Herzegovina";
+            return "Bosnia & Herzegovina";
         case "BLM":
             return "Saint Barthélemy";
         case "BLR":
@@ -267,7 +267,7 @@ const decodeAlpha03 = (code) => {
         case "KIR":
             return "Kiribati";
         case "KNA":
-            return "Saint Kitts and Nevis";
+            return "St. Kitts & Nevis";
         case "KOR":
             return "South Korea";
         case "KVO":
@@ -439,7 +439,7 @@ const decodeAlpha03 = (code) => {
         case "SSD":
             return "South Sudan";
         case "STP":
-            return "Sao Tome and Principe";
+            return "Sao Tome & Principe";
         case "SUR":
             return "Suriname";
         case "SVK":
@@ -475,7 +475,7 @@ const decodeAlpha03 = (code) => {
         case "TON":
             return "Tonga";
         case "TTO":
-            return "Trinidad and Tobago";
+            return "Trinidad & Tobago";
         case "TUN":
             return "Tunisia";
         case "TUR":
@@ -499,9 +499,9 @@ const decodeAlpha03 = (code) => {
         case "UZB":
             return "Uzbekistan";
         case "VAT":
-            return "Holy See";
+            return "Vatican City";
         case "VCT":
-            return "Saint Vincent and the Grenadines";
+            return "St. Vincent & the Grenadines";
         case "VEN":
             return "Venezuela";
         case "VGB":

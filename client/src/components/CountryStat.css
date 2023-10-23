@@ -177,7 +177,7 @@
         }
 
         .Token h1 {
-            font-size: 300%;
+            font-size: 5.25vh;
             font-family: 'Rubik', serif;    
         }
         
@@ -209,7 +209,7 @@
   
 @media screen and (orientation: portrait) {
     .CountryStat {
-        height: 32vw;
+        height: 18vh;
     }
     .CountryStat .Name {
         font-size: 3vh;
