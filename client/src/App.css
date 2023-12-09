@@ -73,7 +73,16 @@ img.Compass {
   padding-left: 1.5vh;
   height: 2.75vh;
   opacity: 0.2;
+  transition: opacity 0.2s ease;
+}
+
+.QuestionContainer .InfoIcon.Visible {
   cursor: pointer;
+}
+
+.QuestionContainer .InfoIcon.Hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .QuestionContainer .Tooltip {
@@ -111,6 +120,7 @@ img.Compass {
   opacity: 1;
   transform: translateX(-50%);
   transition: opacity 0.2s ease-out 0.15s, transform 0.4s ease-out 0.15s;
+  cursor: default;
 }
 
 .AnswerTable.Hidden {
@@ -125,12 +135,21 @@ img.Compass {
   padding-top: 0.4vh;
 }
 
-.AnswerTable tr:nth-child(1) {
+.AnswerTable tr:nth-child(1),
+.AnswerTable tr:nth-child(5) {
   background-color: #222222;
 }
 
 .AnswerTable tr:nth-child(3) {
   background-color: #333333;
+}
+
+.AnswerTable tr:nth-child(6) {
+  text-transform: none;
+  font-family: 'Lexend', sans-serif;    
+  font-size: 1.6vh;
+  transition: opacity 0.2s ease 0.1s;
+  opacity: 0;
 }
 
 .AnswerTable td:nth-child(1) {
@@ -149,6 +168,15 @@ img.Compass {
   width: 8vw;
   min-width: 10vh;
   text-align: center;
+}
+
+.AnswerTable tr:nth-child(6) td {
+  text-align:start;
+  padding-left: 1vw;
+}
+
+.AnswerTable:hover tr:nth-child(6) {
+  opacity: 0.75;
 }
 
 .SubmitButtonContainer {
@@ -265,9 +293,6 @@ img.StreakIcon {
   }
   .Question {
     font-size: 5vh;
-  }
-  .InfoIcon {
-    
   }
   .App > .Title {
     font-size: 1.8vh;

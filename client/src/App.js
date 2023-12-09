@@ -164,7 +164,7 @@ function App() {
       <tr>
         <th>RANK</th>
         <th>NATION</th>
-        <th>STAT</th>
+        <th>SCORE<span style={{fontSize: "1.4vh", verticalAlign: "top"}}>{currentGame?.units? "*" : ""}</span></th>
       </tr>
       {rankings.map((ranking, index) => {
         return (
@@ -180,6 +180,12 @@ function App() {
           </tr>
         );
       })}
+      <tr>
+      <td/><td/><td/>
+      </tr>
+      <tr>
+        <td colspan="3">{currentGame?.units? "* " + currentGame?.units : ""}</td>
+      </tr>
     </table>
     );
   }
@@ -187,15 +193,15 @@ function App() {
   return (
     <div className="App" >
       <img className="Compass NoDrag" src={require("./images/Compass.png")}/>
-      <div className="Title NoTextHighlight">{"\u2022"} WHICH NATION HAS THE {"\u2022"}</div>
+      <div className="Title NoTextHighlight">{"\u2022"} RANK THE NATIONS BY {"\u2022"}</div>
       <div className="QuestionContainer">
         { !!games[0] &&
         <>
           <div className={`Question Top ${isPlayingGameA ? "" : "Hidden"} NoTextHighlight`}>{!!gameA ? gameA.name.toUpperCase() : ""}
-            {!!currentGame?.units && <img className="InfoIcon" src={require("./images/InfoIcon.png")}/> }
+            <img className={`InfoIcon ${!!currentGame?.units && !onResultsPage && isPlayingGameA ? "Visible" : "Hidden"}`} src={require("./images/InfoIcon.png")}/>
           </div>
           <div className={`Question Bottom ${isPlayingGameA ? "Hidden" : ""} NoTextHighlight`}>{!!gameB ? gameB.name.toUpperCase() : ""}
-            {!!currentGame?.units && <img className="InfoIcon" src={require("./images/InfoIcon.png")}/> }
+            <img className={`InfoIcon ${!!currentGame?.units && !onResultsPage && !isPlayingGameA ? "Visible" : "Hidden"}`} src={require("./images/InfoIcon.png")}/>
           </div>
           <Tooltip className='Tooltip' anchorSelect='.InfoIcon' place="right">
               {currentGame?.units}
