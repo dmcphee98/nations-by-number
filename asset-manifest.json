@@ -1,14 +1,17 @@
 {
   "files": {
-    "main.css": "/nation-ranker/static/css/main.384835db.css",
-    "main.js": "/nation-ranker/static/js/main.3395cba1.js",
+    "main.css": "/nation-ranker/static/css/main.c4fc774c.css",
+    "main.js": "/nation-ranker/static/js/main.b8412b20.js",
     "static/media/GUY.png": "/nation-ranker/static/media/GUY.a57ecfd3097e006ed8ea.png",
     "static/media/IOT.png": "/nation-ranker/static/media/IOT.e5db2cdc783b9c9d849e.png",
+    "static/media/HighScoreIcon.png": "/nation-ranker/static/media/HighScoreIcon.0b14d3eeeb7040416a8e.png",
+    "static/media/StreakIcon1.png": "/nation-ranker/static/media/StreakIcon1.4718059ca3c295a36b1b.png",
+    "static/media/StreakIcon.png": "/nation-ranker/static/media/StreakIcon.5f4cf5187c6b42170226.png",
     "static/media/TokenRed.png": "/nation-ranker/static/media/TokenRed.1e0f8721f1a5ba3e3d07.png",
     "static/media/TokenGreen.png": "/nation-ranker/static/media/TokenGreen.854a58979acabed100e0.png",
     "static/media/KIR.png": "/nation-ranker/static/media/KIR.24e505fb82cbce862d34.png",
     "static/media/TokenGray.png": "/nation-ranker/static/media/TokenGray.cef52e1cf0d566d7976c.png",
-    "static/media/StreakIcon.png": "/nation-ranker/static/media/StreakIcon.fdf43d3e41fe31fa7aa1.png",
+    "static/media/StreakIcon_Old.png": "/nation-ranker/static/media/StreakIcon_Old.fdf43d3e41fe31fa7aa1.png",
     "static/media/SourceIcon.png": "/nation-ranker/static/media/SourceIcon.ead35debf42db1074a5e.png",
     "static/media/MHL.png": "/nation-ranker/static/media/MHL.f6cb3dc3e7f64cf70642.png",
     "static/media/GRD.png": "/nation-ranker/static/media/GRD.ee9d6193701a5919e9ea.png",
@@ -23,6 +26,7 @@
     "static/media/TUV.png": "/nation-ranker/static/media/TUV.6debbdfafb20ed9833ab.png",
     "static/media/globe.png": "/nation-ranker/static/media/globe.95c1791bc3f06674ed26.png",
     "static/media/COK.png": "/nation-ranker/static/media/COK.ba15952d549104550e37.png",
+    "static/media/HighScoreIcon1.png": "/nation-ranker/static/media/HighScoreIcon1.7d0631bb11e43d21611d.png",
     "static/media/CXR.png": "/nation-ranker/static/media/CXR.771791a127109925db84.png",
     "static/media/MKD.png": "/nation-ranker/static/media/MKD.2ea9db3fcb23a70b65d0.png",
     "static/media/DMA.png": "/nation-ranker/static/media/DMA.9b5f03aad39834b6f39f.png",
@@ -105,11 +109,11 @@
     "static/media/WSM.png": "/nation-ranker/static/media/WSM.877679415d87665605f8.png",
     "static/media/BTN.png": "/nation-ranker/static/media/BTN.7633380e7e1e696ae7e0.png",
     "index.html": "/nation-ranker/index.html",
-    "main.384835db.css.map": "/nation-ranker/static/css/main.384835db.css.map",
-    "main.3395cba1.js.map": "/nation-ranker/static/js/main.3395cba1.js.map"
+    "main.c4fc774c.css.map": "/nation-ranker/static/css/main.c4fc774c.css.map",
+    "main.b8412b20.js.map": "/nation-ranker/static/js/main.b8412b20.js.map"
   },
   "entrypoints": [
-    "static/css/main.384835db.css",
-    "static/js/main.3395cba1.js"
+    "static/css/main.c4fc774c.css",
+    "static/js/main.b8412b20.js"
   ]
 }
