@@ -246,7 +246,7 @@ function App() {
           <Ellipsis />
         }
       </div>
-        <div className="CountryStatsContainer">
+        <div className={`CountryStatsContainer ${onResultsPage ? "Results" : ""}`}>
           {getCountryStat(0)}
           <div className="LeafContainer">
             <img className="NoDrag" src={require("./images/LeafUp.png")}/>

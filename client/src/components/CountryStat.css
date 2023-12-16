@@ -212,21 +212,19 @@
         height: 18vh;
         max-height: 34vw;
     }
-    .CountryStat {
-        .Name {
-            font-size: 2.5vh;
-            max-width: 36vw; 
-        }
-        .TokenContainer {
-            top: 16%;
-            left: 25%;
-            height: 71.5%;
-            width: 49.5%;
-        }    
-        .TokenContainer .Token h1 {
-            font-size: 5vh;
-            font-family: 'Rubik', serif;    
-        }
+    .CountryStat .Name {
+        font-size: 2.5vh;
+        max-width: 36vw; 
+    }
+    .CountryStat .TokenContainer {
+        top: 16%;
+        left: 25%;
+        height: 71.5%;
+        width: 49.5%;
+    }    
+    .CountryStat .TokenContainer .Token h1 {
+        font-size: 5vh;
+        font-family: 'Rubik', serif;    
     }
     .CountryStatsContainer:nth-child(4) .CountryStat .Name {
         max-width: 100vw; 
