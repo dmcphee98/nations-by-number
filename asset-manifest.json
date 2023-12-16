@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/nation-ranker/static/css/main.84fee078.css",
-    "main.js": "/nation-ranker/static/js/main.b8412b20.js",
+    "main.css": "/nation-ranker/static/css/main.5a32a1b9.css",
+    "main.js": "/nation-ranker/static/js/main.5edf4fd2.js",
     "static/media/GUY.png": "/nation-ranker/static/media/GUY.a57ecfd3097e006ed8ea.png",
     "static/media/IOT.png": "/nation-ranker/static/media/IOT.e5db2cdc783b9c9d849e.png",
     "static/media/HighScoreIcon.png": "/nation-ranker/static/media/HighScoreIcon.0b14d3eeeb7040416a8e.png",
@@ -109,11 +109,11 @@
     "static/media/WSM.png": "/nation-ranker/static/media/WSM.877679415d87665605f8.png",
     "static/media/BTN.png": "/nation-ranker/static/media/BTN.7633380e7e1e696ae7e0.png",
     "index.html": "/nation-ranker/index.html",
-    "main.84fee078.css.map": "/nation-ranker/static/css/main.84fee078.css.map",
-    "main.b8412b20.js.map": "/nation-ranker/static/js/main.b8412b20.js.map"
+    "main.5a32a1b9.css.map": "/nation-ranker/static/css/main.5a32a1b9.css.map",
+    "main.5edf4fd2.js.map": "/nation-ranker/static/js/main.5edf4fd2.js.map"
   },
   "entrypoints": [
-    "static/css/main.84fee078.css",
-    "static/js/main.b8412b20.js"
+    "static/css/main.5a32a1b9.css",
+    "static/js/main.5edf4fd2.js"
   ]
 }
