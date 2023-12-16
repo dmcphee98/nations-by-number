@@ -17,10 +17,33 @@ function App() {
   const [currentGame, setCurrentGame] = useState(undefined);
   const [answer, setAnswer] = useState(undefined);
   const [streak, setStreak] = useState(0);
+  const [highScore, setHighScore] = useState(0);
+
+  // Track whether window is portrait or landscape
+  const [isPortraitMode, setPortraitMode] = useState(getIsPortraitMode());
 
   useEffect(() => {
-    newGame();
+    window.addEventListener('resize', handleWindowResize);
+
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    };
   }, []);
+
+  function getIsPortraitMode() {
+    const {innerWidth, innerHeight} = window;
+    return innerHeight > innerWidth;
+  }  
+
+  function handleWindowResize() {
+    setPortraitMode(getIsPortraitMode());
+    console.log(getIsPortraitMode());
+  }
+
+  useEffect(() => {
+    setHighScore(localStorage.getItem("highScore") ?? 0);
+    newGame();
+  }, []);  
   
   const newGame = async () => {
     if (!!!games || games.length == 0) {
@@ -66,8 +89,6 @@ function App() {
     cidB = isLoading ? "NIL" : gameB?.rankings?.[n]?.cid;
 
     const currentCid = isPlayingGameA ? cidA : cidB;
-    console.log(currentCid);
-    console.log(answer);
 
     return (
       <CountryStat 
@@ -102,7 +123,7 @@ function App() {
   }
 
   const getAnswer = (game) => {
-    if (!!!game) return [];
+    if (!!!game || !!!game.rankings) return [];
     const rankingsCopy = [...game.rankings];
     rankingsCopy.sort((a, b) => standardSort(a.rank, b.rank));
     const answer = [rankingsCopy[0].cid, rankingsCopy[1].cid, rankingsCopy[2].cid];
@@ -128,9 +149,13 @@ function App() {
         newGame();
         setUserOrder([]);  
       } else {
-        // Update streak
+        // Update streak & high score
         if (answer.toString() === userOrder.toString()) {
-          setStreak(streak+1);
+          if (streak + 1 > highScore) {
+            localStorage.setItem("highScore", streak + 1);
+            setHighScore(streak + 1); 
+          }
+          setStreak(streak + 1);
         } else {
           setStreak(0);
         }
@@ -158,9 +183,9 @@ function App() {
     const rankings = [...currentGame.rankings];
     rankings.sort((a, b) => standardSort(a.rank, b.rank));
 
-    console.log(rankings);
     return (
-      <table className={`AnswerTable ${onResultsPage ? "Visible" : "Hidden"}`}>
+      <table className={`AnswerTable ${onResultsPage ? "Visible" : "Hidden"} ${isPortraitMode ? "Mobile" : ""}`}>
+      <tbody>
       <tr>
         <th>RANK</th>
         <th>NATION</th>
@@ -168,7 +193,7 @@ function App() {
       </tr>
       {rankings.map((ranking, index) => {
         return (
-          <tr>
+          <tr key={index}>
             <td>
               {ranking.rank}
               <span style={{fontSize: '1.3vh'}}>
@@ -184,8 +209,9 @@ function App() {
       <td/><td/><td/>
       </tr>
       <tr>
-        <td colspan="3">{currentGame?.units? "* " + currentGame?.units : ""}</td>
+        <td colSpan="3">{currentGame?.units? "* " + currentGame?.units : ""}</td>
       </tr>
+      </tbody>
     </table>
     );
   }
@@ -197,15 +223,23 @@ function App() {
       <div className="QuestionContainer">
         { !!games[0] &&
         <>
-          <div className={`Question Top ${isPlayingGameA ? "" : "Hidden"} NoTextHighlight`}>{!!gameA ? gameA.name.toUpperCase() : ""}
-            <img className={`InfoIcon ${!!currentGame?.units && !onResultsPage && isPlayingGameA ? "Visible" : "Hidden"}`} src={require("./images/InfoIcon.png")}/>
+          <div className={`Question Top ${isPlayingGameA ? "Visible" : "Hidden"} NoTextHighlight`}>
+            <p style={{display: "inline", position: "relative"}}>{!!gameA ? gameA.name.toUpperCase() : ""}
+              <img className={`InfoIcon ${!!currentGame?.units && !onResultsPage && isPlayingGameA ? "Visible" : "Hidden"}`} src={require("./images/InfoIcon.png")}/>
+            </p>
           </div>
-          <div className={`Question Bottom ${isPlayingGameA ? "Hidden" : ""} NoTextHighlight`}>{!!gameB ? gameB.name.toUpperCase() : ""}
-            <img className={`InfoIcon ${!!currentGame?.units && !onResultsPage && !isPlayingGameA ? "Visible" : "Hidden"}`} src={require("./images/InfoIcon.png")}/>
+          <div className={`Question Bottom ${isPlayingGameA ? "Hidden" : "Visible"} NoTextHighlight`}>
+            <p style={{display: "inline", position: "relative"}}>{!!gameB ? gameB.name.toUpperCase() : ""}
+              <img className={`InfoIcon ${!!currentGame?.units && !onResultsPage && !isPlayingGameA ? "Visible" : "Hidden"}`} src={require("./images/InfoIcon.png")}/>
+            </p>
           </div>
-          <Tooltip className='Tooltip' anchorSelect='.InfoIcon' place="right">
+          <Tooltip 
+            className='InfoTooltip' 
+            anchorSelect={isPortraitMode ? ".Question" : ".InfoIcon"} 
+            place={isPortraitMode ? "bottom" : "right"}
+            offset={isPortraitMode ? 5 : 8}>
               {currentGame?.units}
-            </Tooltip>
+          </Tooltip>
         </>
         }
         { !!!games[0] &&
@@ -217,33 +251,68 @@ function App() {
           <div className="LeafContainer">
             <img className="NoDrag" src={require("./images/LeafUp.png")}/>
           </div>
-          {getCountryStat(1)}
+          {getCountryStat(isPortraitMode ? 2 : 1)}
           <div className="LeafContainer">
             <img className="NoDrag" src={require("./images/LeafDown.png")}/>
           </div>
-          {getCountryStat(2)}
+          {getCountryStat(isPortraitMode ? 1 : 2)}
         </div>
         <div className="PageBottom">
           {renderTable()}
           <div className={`SubmitButtonContainer ${onResultsPage ? 'Next' : 'Submit'}`}>
           <div className={`StreakIcon ${onResultsPage ? "Visible" : "Hidden"}`}>
-            <img className={`StreakIcon NoDrag `} src={require("./images/StreakIcon.png")}/>
-            <p>{streak}</p>
-            </div>
-            <div 
+            <img 
+              className={`StreakIcon NoDrag `} 
+              src={require(`./images/StreakIcon${streak > 2 ? "1" : ""}.png`)}/>
+            <p style={{ fontSize: streak > 9 ? "1.5vh" : "1.8vh"}}>{streak}</p>
+          </div>
+          {!isPortraitMode && 
+            <Tooltip 
+              className='StreakTooltip' 
+              anchorSelect={".StreakIcon"} 
+              place="bottom"
+              offset="7">
+                Current streak
+            </Tooltip>
+          }
+          <div className={`HighScoreIcon ${onResultsPage ? "Visible" : "Hidden"}`}>
+            <img className={`HighScoreIcon NoDrag `} src={require(`./images/HighScoreIcon${streak == highScore ? "1" : ""}.png`)}/>
+            <p style={{ fontSize: streak > 9 ? "1.5vh" : "1.8vh"}}>{highScore}</p>
+          </div>
+          {!isPortraitMode && 
+            <Tooltip 
+              className='HighScoreTooltip' 
+              anchorSelect={".HighScoreIcon"} 
+              place="bottom"
+              offset="7">
+                High Score
+            </Tooltip>
+          }
+          <div 
               className={`SubmitButton ${games.length > 0 && userOrder.length === 3 ? "Active" : "Inactive"} NoTextHighlight`}
               onClick={onSubmit}
             >
               {onResultsPage ? 'NEXT' : 'SUBMIT'}
-            </div>
-            <a 
-              className="SourceIcon" 
-              href={onResultsPage ? currentGame.source : "#"}
-            >
-              <img className={`SourceIcon NoDrag ${onResultsPage ? "Visible" : "Hidden"}`} src={require("./images/SourceIcon.png")}/>
-            </a>
           </div>
-          </div>
+          <a 
+            className="SourceIcon" 
+            href={onResultsPage ? currentGame.source : "#"}
+            target="_blank"
+          >
+            <img className={`SourceIcon NoDrag ${onResultsPage ? "Visible" : "Hidden"}`} src={require("./images/SourceIcon.png")}/>
+          </a>
+          {!isPortraitMode && 
+            <Tooltip 
+              className='SourceTooltip' 
+              anchorSelect={".SourceIcon"} 
+              place="bottom"
+              offset="7">
+                View data
+            </Tooltip>
+          }
+
+        </div>
+      </div>
     </div>
   );
 }

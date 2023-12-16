@@ -8,6 +8,7 @@
   justify-content: center;
   color: white;
   font-family: 'Germania One', cursive;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .App > .Title {
@@ -55,6 +56,8 @@ img.Compass {
 
 .Question {
   position: absolute;
+  text-align: center;
+  text-wrap: balance;
   opacity: 1;
   transition: transform 0.6s ease, opacity 0.6s ease;
 }
@@ -70,8 +73,8 @@ img.Compass {
   left: 100%;
   top: 46%;
   transform: translateY(-50%);
-  padding-left: 1.5vh;
-  height: 2.75vh;
+  padding-left: 2vh;
+  height: 3vh;
   opacity: 0.2;
   transition: opacity 0.2s ease;
 }
@@ -85,7 +88,10 @@ img.Compass {
   pointer-events: none;
 }
 
-.QuestionContainer .Tooltip {
+.InfoTooltip,
+.StreakTooltip,
+.SourceTooltip,
+.HighScoreTooltip {
   font-family: 'Lexend', sans-serif;    
 }
 
@@ -175,7 +181,8 @@ img.Compass {
   padding-left: 1vw;
 }
 
-.AnswerTable:hover tr:nth-child(6) {
+.AnswerTable:hover tr:nth-child(6), 
+.AnswerTable.Mobile tr:nth-child(6) {
   opacity: 0.75;
 }
 
@@ -234,7 +241,7 @@ img.Compass {
 
 a.SourceIcon {
   position: absolute;
-  left: 125%;
+  left: 118%;
   height: 100%;
 }
 
@@ -245,27 +252,37 @@ img.SourceIcon {
   transition: opacity 0.2s ease, scale 0.1s ease;
 }
 
-div.StreakIcon {
+div.StreakIcon,
+div.HighScoreIcon {
   position: absolute;
-  right: 125%;
   height: 100%;
   transition: opacity 0.2s ease, scale 0.1s ease;
 }
 
-img.StreakIcon {
+div.StreakIcon {
+  right: 165%;
+}
+
+div.HighScoreIcon {
+  right: 125%;
+}
+
+img.StreakIcon,
+img.HighScoreIcon {
   height: 90%;
   opacity: 0.7;
 }
 
-.StreakIcon p {
+.StreakIcon p,
+.HighScoreIcon p {
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 47%;
   margin: 0;
-  font-size: 1.8vh;
   font-family: 'Lexend', sans-serif;    
   transform: translate(-50%, -25%);
   cursor:context-menu;
+  pointer-events: none;
 }
 
 .SourceIcon.Visible:hover {
@@ -274,7 +291,8 @@ img.StreakIcon {
 }
 
 .SourceIcon.Hidden,
-.StreakIcon.Hidden {
+.StreakIcon.Hidden,
+.HighScoreIcon.Hidden {
   opacity: 0;
 }
 
@@ -304,7 +322,7 @@ img.StreakIcon {
 @media screen and (orientation: portrait) {
   .CountryStatsContainer {
     width: 90vw;
-    height: 38vh;
+    height: 40vh;
     flex-wrap: wrap;
     justify-content: space-around;
   }
@@ -312,21 +330,64 @@ img.StreakIcon {
     flex: 50%
   }
   .QuestionContainer {
-    font-size: 7vw;
-    padding-bottom: 4vh;
+    margin-bottom: 4vh;
+    width: 70vw;
+    margin-left: 15vw;
+    margin-right: 15vw;
+  }
+  .QuestionContainer .Question {
+    font-size: 4vh;
   }
   .LeafContainer {
     height: 0%;
   }
-  
   .LeafContainer img {
     height: 0%;
   }
   .App > .Title {
-    font-size: 3vw;
-    padding-bottom: 2vh;
+    font-size: 1.5vh;
+    padding-bottom: 2.5vh;
     letter-spacing: 0.35vh;
   }
+  img.Compass {
+    height: 8vh;
+    padding-top: 4vh;
+  }
+  .QuestionContainer .InfoIcon {
+    top: 100%;
+    height: 2.75vh;
+    padding-left: 2.5vw;
+    transform: translateY(-125%);
+    margin-bottom: 2vh;
+  }
+  .QuestionContainer .InfoTooltip {
+    font-size: 1.5vh;
+    padding: 4px 8px;
+  }
+  .SubmitButtonContainer {
+    width: 15vh;
+    height: 5vh;  
+    margin-top: 10vh;
+  }
+  .SubmitButton {
+    font-size: 1.7vh;
+    height: 120%;
+  }
+  div.StreakIcon {
+    right: 160%;
+  }
+  
+  div.HighScoreIcon {
+    right: 118%;
+  }  
 }
 
-
+@media screen and (orientation: portrait) and (max-width: 450px){
+  .QuestionContainer {
+    height: 5vh;
+    margin-bottom: 6vh;
+  }
+  .QuestionContainer .Question {
+    font-size: 3.25vh;
+  }
+}
