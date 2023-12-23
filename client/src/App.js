@@ -62,6 +62,7 @@ function App() {
       if (games.length <= 5) {
         axios.get('https://g3w6hkwjmzejlbwk2p6dlnzz7y0kgpco.lambda-url.us-east-1.on.aws?n=5').then((response) => {
           let fetchedGames = response.data;
+          if (games[games.length-1].name == fetchedGames[0].name) fetchedGames.reverse();
           setGames(games => [...games, ...fetchedGames]);
         });
       }
@@ -261,9 +262,8 @@ function App() {
           {renderTable()}
           <div className={`SubmitButtonContainer ${onResultsPage ? 'Next' : 'Submit'}`}>
           <div className={`StreakIcon ${onResultsPage ? "Visible" : "Hidden"}`}>
-            <img 
-              className={`StreakIcon NoDrag `} 
-              src={require(`./images/StreakIcon${streak > 2 ? "1" : ""}.png`)}/>
+            <img className={`StreakIcon NoDrag ${streak < 3 ? "Visible" : ""}`} src={require(`./images/StreakIcon.png`)}/>
+            <img className={`StreakIcon NoDrag ${streak >=3 ? "Visible" : ""}`} src={require(`./images/StreakIcon1.png`)}/>
             <p style={{ fontSize: streak > 9 ? "1.5vh" : "1.8vh"}}>{streak}</p>
           </div>
           {!isPortraitMode && 
@@ -276,7 +276,8 @@ function App() {
             </Tooltip>
           }
           <div className={`HighScoreIcon ${onResultsPage ? "Visible" : "Hidden"}`}>
-            <img className={`HighScoreIcon NoDrag `} src={require(`./images/HighScoreIcon${streak == highScore ? "1" : ""}.png`)}/>
+            <img className={`HighScoreIcon NoDrag ${streak < highScore || streak == 0 ? "Visible" : ""}`} src={require(`./images/HighScoreIcon.png`)}/>
+            <img className={`HighScoreIcon NoDrag ${streak == highScore && streak > 0 ? "Visible" : ""}`} src={require(`./images/HighScoreIcon1.png`)}/>
             <p style={{ fontSize: streak > 9 ? "1.5vh" : "1.8vh"}}>{highScore}</p>
           </div>
           {!isPortraitMode && 
@@ -301,14 +302,31 @@ function App() {
           >
             <img className={`SourceIcon NoDrag ${onResultsPage ? "Visible" : "Hidden"}`} src={require("./images/SourceIcon.png")}/>
           </a>
+          <a 
+            className="GithubIcon" 
+            href={onResultsPage ? "https://github.com/dmcphee98/nation-ranker" : "#"}
+            target="_blank"
+          >
+            <img className={`GithubIcon NoDrag ${onResultsPage ? "Visible" : "Hidden"}`} src={require("./images/GithubIcon.png")}/>
+          </a>
+
           {!isPortraitMode && 
-            <Tooltip 
-              className='SourceTooltip' 
-              anchorSelect={".SourceIcon"} 
-              place="bottom"
-              offset="7">
-                View data
-            </Tooltip>
+            <>
+              <Tooltip 
+                className='SourceTooltip' 
+                anchorSelect={".SourceIcon"} 
+                place="bottom"
+                offset="7">
+                  View data
+              </Tooltip>
+              <Tooltip 
+                className='GithubTooltip' 
+                anchorSelect={".GithubIcon"} 
+                place="bottom"
+                offset="7">
+                  View on Github
+              </Tooltip>
+            </>
           }
 
         </div>

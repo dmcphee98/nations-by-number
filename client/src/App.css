@@ -91,6 +91,7 @@ img.Compass {
 .InfoTooltip,
 .StreakTooltip,
 .SourceTooltip,
+.GithubTooltip,
 .HighScoreTooltip {
   font-family: 'Lexend', sans-serif;    
 }
@@ -124,7 +125,7 @@ img.Compass {
 
 .AnswerTable.Visible {
   opacity: 1;
-  transform: translate(-50%, -15%);
+  transform: translate(-50%, -5%);
   transition: opacity 0.2s ease-out 0.15s, transform 0.4s ease-out 0.15s;
   cursor: default;
 }
@@ -200,7 +201,7 @@ img.Compass {
 }
 
 .SubmitButtonContainer.Next {
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -45%);
   transition: transform 0.5s ease-out;
 }
 
@@ -239,13 +240,23 @@ img.Compass {
   transform: scale(0.9);
 }
 
-a.SourceIcon {
+a.SourceIcon,
+a.GithubIcon {
   position: absolute;
-  left: 118%;
   height: 100%;
+  transform: translateX(50%);
 }
 
-img.SourceIcon {
+a.SourceIcon {
+  right: -35%;
+}
+
+a.GithubIcon {
+  right: -75%;
+}
+
+img.SourceIcon,
+img.GithubIcon {
   height: 90%;
   cursor: pointer;
   opacity: 0.7;
@@ -257,40 +268,55 @@ div.HighScoreIcon {
   position: absolute;
   height: 100%;
   transition: opacity 0.2s ease, scale 0.1s ease;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 div.StreakIcon {
-  right: 165%;
+  left: -75%;
 }
 
 div.HighScoreIcon {
-  right: 125%;
+  left: -35%;
 }
 
 img.StreakIcon,
 img.HighScoreIcon {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  transform: translate(-50%, -50%);
   height: 90%;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+img.StreakIcon.Visible,
+img.HighScoreIcon.Visible {
   opacity: 0.7;
 }
 
 .StreakIcon p,
 .HighScoreIcon p {
-  position: absolute;
-  left: 50%;
-  top: 47%;
   margin: 0;
   font-family: 'Lexend', sans-serif;    
-  transform: translate(-50%, -25%);
   cursor:context-menu;
   pointer-events: none;
+  padding: 0.75vh 0 0 0;
+  transform: translate(-5%, 5%)
 }
 
-.SourceIcon.Visible:hover {
+.SourceIcon.Visible:hover,
+.GithubIcon.Visible:hover {
   opacity: 1;
   scale: 1.05;
 }
 
 .SourceIcon.Hidden,
+.GithubIcon.Hidden,
 .StreakIcon.Hidden,
 .HighScoreIcon.Hidden {
   opacity: 0;
@@ -377,13 +403,12 @@ img.HighScoreIcon {
     font-size: 1.7vh;
     height: 120%;
   }
-  div.StreakIcon {
-    right: 160%;
+  .AnswerTable.Visible {
+    transform: translate(-50%, -15%);
   }
-  
-  div.HighScoreIcon {
-    right: 118%;
-  }  
+  .SubmitButtonContainer.Next {
+    transform: translate(-50%, -50%);
+  }
 }
 
 @media screen and (orientation: portrait) and (max-width: 450px){
