@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/nations-by-number/static/css/main.7b294cc7.css",
-    "main.js": "/nations-by-number/static/js/main.317f583b.js",
+    "main.js": "/nations-by-number/static/js/main.ca7891bb.js",
     "static/media/GithubIcon.png": "/nations-by-number/static/media/GithubIcon.6c185a78400a0f6f9689.png",
     "static/media/GUY.png": "/nations-by-number/static/media/GUY.a57ecfd3097e006ed8ea.png",
     "static/media/IOT.png": "/nations-by-number/static/media/IOT.e5db2cdc783b9c9d849e.png",
@@ -16,14 +16,12 @@
     "static/media/GRD.png": "/nations-by-number/static/media/GRD.ee9d6193701a5919e9ea.png",
     "static/media/BIH.png": "/nations-by-number/static/media/BIH.4930857fa50c10b00a03.png",
     "static/media/VUT.png": "/nations-by-number/static/media/VUT.3e8d35684b99b632c84b.png",
-    "static/media/Compass.png": "/nations-by-number/static/media/Compass.7b04403f68ec26620f50.png",
     "static/media/BRN.png": "/nations-by-number/static/media/BRN.a4136ba3817ed306c09c.png",
     "static/media/AUS.png": "/nations-by-number/static/media/AUS.b1af475334e9352847f8.png",
     "static/media/NPL.png": "/nations-by-number/static/media/NPL.03dfd54d20281d5e3cec.png",
     "static/media/BLR.png": "/nations-by-number/static/media/BLR.b4004de8bdb1449b0548.png",
     "static/media/TKM.png": "/nations-by-number/static/media/TKM.3b24c8d90248de6b6e7d.png",
     "static/media/TUV.png": "/nations-by-number/static/media/TUV.6debbdfafb20ed9833ab.png",
-    "static/media/globe.png": "/nations-by-number/static/media/globe.95c1791bc3f06674ed26.png",
     "static/media/COK.png": "/nations-by-number/static/media/COK.ba15952d549104550e37.png",
     "static/media/HighScoreIcon1.png": "/nations-by-number/static/media/HighScoreIcon1.7d0631bb11e43d21611d.png",
     "static/media/CXR.png": "/nations-by-number/static/media/CXR.771791a127109925db84.png",
@@ -63,7 +61,6 @@
     "static/media/GBR.png": "/nations-by-number/static/media/GBR.04de3fbfbd17a75934de.png",
     "static/media/SLB.png": "/nations-by-number/static/media/SLB.336d6d0a5e5cd48d9587.png",
     "static/media/VGB.png": "/nations-by-number/static/media/VGB.7f3da65f4e17d409140a.png",
-    "static/media/NIL.png": "/nations-by-number/static/media/NIL.d26271234e2d41b8ef94.png",
     "static/media/MSR.png": "/nations-by-number/static/media/MSR.eea1362513d2972bb2e4.png",
     "static/media/TWN.png": "/nations-by-number/static/media/TWN.cd6741f1cb3423e4c3d2.png",
     "static/media/KAZ.png": "/nations-by-number/static/media/KAZ.24d4fc9056f1a5b58f05.png",
@@ -110,10 +107,10 @@
     "static/media/BTN.png": "/nations-by-number/static/media/BTN.7633380e7e1e696ae7e0.png",
     "index.html": "/nations-by-number/index.html",
     "main.7b294cc7.css.map": "/nations-by-number/static/css/main.7b294cc7.css.map",
-    "main.317f583b.js.map": "/nations-by-number/static/js/main.317f583b.js.map"
+    "main.ca7891bb.js.map": "/nations-by-number/static/js/main.ca7891bb.js.map"
   },
   "entrypoints": [
     "static/css/main.7b294cc7.css",
-    "static/js/main.317f583b.js"
+    "static/js/main.ca7891bb.js"
   ]
 }
