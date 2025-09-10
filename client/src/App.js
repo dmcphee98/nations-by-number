@@ -238,7 +238,7 @@ function App() {
       <img className="Compass NoDrag" src={`${process.env.PUBLIC_URL}/images/Compass.png`} alt=""/>
       <div className="Title NoTextHighlight">{"\u2022"} RANK THE NATIONS BY {"\u2022"}</div>
       <div className="QuestionContainer">
-        { !!games[0] &&
+        { !!games[0] && imagesLoaded >= 3 &&
         <>
           <div className={`Question Top ${isPlayingGameA ? "Visible" : "Hidden"} NoTextHighlight`}>
             <p style={{display: "inline", position: "relative"}}>{!!gameA ? gameA.name.toUpperCase() : ""}
@@ -259,7 +259,7 @@ function App() {
           </Tooltip>
         </>
         }
-        { !!!games[0] &&
+        { (!!!games[0] || imagesLoaded < 3) &&
           <Ellipsis />
         }
       </div>

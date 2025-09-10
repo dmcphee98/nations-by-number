@@ -59,13 +59,13 @@ img.Compass {
   text-align: center;
   text-wrap: balance;
   opacity: 1;
-  transition: transform 0.6s ease, opacity 0.6s ease;
+  transition: opacity 0.3s ease 0.3s;
 }
 
 .Question.Hidden{
-  transform: translateY(2vh);
   opacity: 0;
   pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
 .QuestionContainer .InfoIcon {
