@@ -18,6 +18,7 @@ function App() {
   const [answer, setAnswer] = useState(undefined);
   const [streak, setStreak] = useState(0);
   const [highScore, setHighScore] = useState(0);
+  const [imagesLoaded, setImagesLoaded] = useState(0);
 
   // Track whether window is portrait or landscape
   const [isPortraitMode, setPortraitMode] = useState(getIsPortraitMode());
@@ -46,19 +47,25 @@ function App() {
   }, []);  
   
   const newGame = async () => {
-    if (!!!games || games.length === 0) {
+    if (!games || games.length === 0) {
+      setImagesLoaded(0);
       axios.get('https://g3w6hkwjmzejlbwk2p6dlnzz7y0kgpco.lambda-url.us-east-1.on.aws?n=5').then((response) => {
         let fetchedGames = response.data;
-        setGames(games => [...fetchedGames]);
+        setGames([...fetchedGames]);
         setAnswer(getAnswer(fetchedGames[0]));
         setCurrentGame(fetchedGames[0]);
-        setIsPlayingGameA((isPlayingGameA, games) => !isPlayingGameA);
+        preloadNextGame(fetchedGames[0]);
+        /* When we have 0 games left and we fetch more games from the lambda function, we must wait until 
+         * the images for each of the 3 countries have loaded in before flipping, to avoid visual flickering.
+         * So we preload the next game (i.e. render the flags on the underside of each card), and the actual
+         * flipping is performed by the useEffect below, after each of the images has loaded.
+         */
       });
     } else {
       const newGame = games[1];
       setGames(games => games.slice(1));
       setAnswer(getAnswer(newGame));
-      setIsPlayingGameA((isPlayingGameA, games) => !isPlayingGameA);
+      setIsPlayingGameA(isPlayingGameA => !isPlayingGameA);
       if (games.length <= 5) {
         axios.get('https://g3w6hkwjmzejlbwk2p6dlnzz7y0kgpco.lambda-url.us-east-1.on.aws?n=5').then((response) => {
           let fetchedGames = response.data;
@@ -70,6 +77,14 @@ function App() {
       setCurrentGame(newGame);
     }
   }
+
+  // This is what causes the cards to flip after all 3 flags have loaded.
+  useEffect(() => {
+    if (imagesLoaded === 3) {
+        setIsPlayingGameA(isPlayingGameA => !isPlayingGameA);
+    }
+  }, [imagesLoaded]);  
+
 
   const onCountrySelect = (cid) => {
     if (onResultsPage) return;
@@ -102,6 +117,7 @@ function App() {
         isPlayingGameA={isPlayingGameA}
         onResultsPage={onResultsPage}
         onClick={() => onCountrySelect(currentCid)}
+        setImagesLoaded={setImagesLoaded}
       />
     )
   }
@@ -110,21 +126,21 @@ function App() {
     preloadNextGame();
   }, [isPlayingGameA]);
 
-  const preloadNextGame = async () => {
-    if (!!!gameA && !!!gameB) {
+  const preloadNextGame = async (game) => {
+    if (!gameA && !gameB) {
       // Edge-case for the very first game
-      setGameB(games[0]);
+      setGameB(game ?? games[0]);
     }
     await new Promise(resolve => setTimeout(resolve, 800));
     if (isPlayingGameA) {
-      setGameB(games[1]);
+      setGameB(game ?? games[1]);
     } else {
-      setGameA(games[1]);
+      setGameA(game ?? games[1]);
     }
   }
 
   const getAnswer = (game) => {
-    if (!!!game || !!!game.rankings) return [];
+    if (!game || !game.rankings) return [];
     const rankingsCopy = [...game.rankings];
     rankingsCopy.sort((a, b) => standardSort(a.rank, b.rank));
     const answer = [rankingsCopy[0].cid, rankingsCopy[1].cid, rankingsCopy[2].cid];
@@ -179,7 +195,7 @@ function App() {
   }
 
   const renderTable = () => {
-    if (!!!currentGame) return;
+    if (!currentGame) return;
 
     const rankings = [...currentGame.rankings];
     rankings.sort((a, b) => standardSort(a.rank, b.rank));
@@ -219,7 +235,7 @@ function App() {
 
   return (
     <div className="App" >
-      <img className="Compass NoDrag" src={require("./images/Compass.png")} alt=""/>
+      <img className="Compass NoDrag" src={`${process.env.PUBLIC_URL}/images/Compass.png`} alt=""/>
       <div className="Title NoTextHighlight">{"\u2022"} RANK THE NATIONS BY {"\u2022"}</div>
       <div className="QuestionContainer">
         { !!games[0] &&
@@ -250,11 +266,11 @@ function App() {
         <div className={`CountryStatsContainer ${onResultsPage ? "Results" : ""}`}>
           {getCountryStat(0)}
           <div className="LeafContainer">
-            <img className="NoDrag" src={require("./images/LeafUp.png")} alt=""/>
+            <img className="NoDrag" src={`${process.env.PUBLIC_URL}/images/LeafUp.png`} alt=""/>
           </div>
           {getCountryStat(isPortraitMode ? 2 : 1)}
           <div className="LeafContainer">
-            <img className="NoDrag" src={require("./images/LeafDown.png")} alt=""/>
+            <img className="NoDrag" src={`${process.env.PUBLIC_URL}/images/LeafDown.png`} alt=""/>
           </div>
           {getCountryStat(isPortraitMode ? 1 : 2)}
         </div>

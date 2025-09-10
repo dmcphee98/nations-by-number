@@ -10,7 +10,7 @@ import Globe from "./Globe";
 
 import "./CountryStat.scss";
 
-function CountryStat({ index, cidA, cidB, userRanking, answer, onResultsPage, isPlayingGameA, onClick }) {
+function CountryStat({ index, cidA, cidB, userRanking, answer, onResultsPage, isPlayingGameA, onClick, setImagesLoaded }) {
 
   const [prevUserRanking, setPrevUserRanking] = useState(-1);
   const [showResult, setShowResult] = useState(false);
@@ -69,18 +69,18 @@ function CountryStat({ index, cidA, cidB, userRanking, answer, onResultsPage, is
   return (
     <div className={`CountryStat ${cidA === "NIL" ? 'Loading' : 'Loaded'}`}>
       <div className="Card">
-        <img src={require(`../images/CardStack${index}.png`)} alt="" className="CardStack" />
+        <img src={`${process.env.PUBLIC_URL}/images/CardStack${index}.png`} alt="" className="CardStack"/>
         <div className={`CardFace Top ${isPlayingGameA ? 'FaceUp' : 'FaceDown'} ${onResultsPage ? '' : 'Hoverable'} NoTextHighlight NoDrag`}>
-          <img className="Border"src={require("../images/CardBorder2.png")} alt=""/>
-          <Flag cid={cidA} onClick={localOnClick}/>
+          <img className="Border"src={`${process.env.PUBLIC_URL}/images/CardBorder.png`} alt=""/>
+          <Flag cid={cidA} onClick={localOnClick} setImageLoaded={setImagesLoaded}/>
           { cidA === "NIL" &&
             <Globe />
           }
           {renderToken("A")}
         </div>
         <div className={`CardFace Bottom ${isPlayingGameA ? 'FaceDown' : 'FaceUp'} ${onResultsPage ? '' : 'Hoverable'} NoTextHighlight NoDrag`}>
-          <img className="Border" src={require("../images/CardBorder2.png")} alt=""/>
-          <Flag cid={cidB} onClick={localOnClick}/>
+          <img className="Border" src={`${process.env.PUBLIC_URL}/images/CardBorder.png`} alt=""/>
+          <Flag cid={cidB} onClick={localOnClick} setImageLoaded={setImagesLoaded}/>
           {renderToken("B")}
         </div>
       </div>
