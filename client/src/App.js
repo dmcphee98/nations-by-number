@@ -4,7 +4,7 @@ import CountryStat from "./components/CountryStat";
 import decodeAlpha03 from "./components/Alpha03Decoder";
 import Ellipsis from "./components/Ellipsis";
 import { Tooltip } from "react-tooltip";
-import "./App.css";
+import "./App.scss";
 
 function App() {
 
@@ -46,7 +46,7 @@ function App() {
   }, []);  
   
   const newGame = async () => {
-    if (!!!games || games.length == 0) {
+    if (!!!games || games.length === 0) {
       axios.get('https://g3w6hkwjmzejlbwk2p6dlnzz7y0kgpco.lambda-url.us-east-1.on.aws?n=5').then((response) => {
         let fetchedGames = response.data;
         setGames(games => [...fetchedGames]);
@@ -62,7 +62,7 @@ function App() {
       if (games.length <= 5) {
         axios.get('https://g3w6hkwjmzejlbwk2p6dlnzz7y0kgpco.lambda-url.us-east-1.on.aws?n=5').then((response) => {
           let fetchedGames = response.data;
-          if (games[games.length-1].name == fetchedGames[0].name) fetchedGames.reverse();
+          if (games[games.length-1].name === fetchedGames[0].name) fetchedGames.reverse();
           setGames(games => [...games, ...fetchedGames]);
         });
       }
@@ -219,19 +219,19 @@ function App() {
 
   return (
     <div className="App" >
-      <img className="Compass NoDrag" src={require("./images/Compass.png")}/>
+      <img className="Compass NoDrag" src={require("./images/Compass.png")} alt=""/>
       <div className="Title NoTextHighlight">{"\u2022"} RANK THE NATIONS BY {"\u2022"}</div>
       <div className="QuestionContainer">
         { !!games[0] &&
         <>
           <div className={`Question Top ${isPlayingGameA ? "Visible" : "Hidden"} NoTextHighlight`}>
             <p style={{display: "inline", position: "relative"}}>{!!gameA ? gameA.name.toUpperCase() : ""}
-              <img className={`InfoIcon ${!!currentGame?.units && !onResultsPage && isPlayingGameA ? "Visible" : "Hidden"}`} src={require("./images/InfoIcon.png")}/>
+              <img className={`InfoIcon ${!!currentGame?.units && !onResultsPage && isPlayingGameA ? "Visible" : "Hidden"}`} src={require("./images/InfoIcon.png")} alt="Info icon"/>
             </p>
           </div>
           <div className={`Question Bottom ${isPlayingGameA ? "Hidden" : "Visible"} NoTextHighlight`}>
             <p style={{display: "inline", position: "relative"}}>{!!gameB ? gameB.name.toUpperCase() : ""}
-              <img className={`InfoIcon ${!!currentGame?.units && !onResultsPage && !isPlayingGameA ? "Visible" : "Hidden"}`} src={require("./images/InfoIcon.png")}/>
+              <img className={`InfoIcon ${!!currentGame?.units && !onResultsPage && !isPlayingGameA ? "Visible" : "Hidden"}`} src={require("./images/InfoIcon.png")} alt="Info icon"/>
             </p>
           </div>
           <Tooltip 
@@ -250,11 +250,11 @@ function App() {
         <div className={`CountryStatsContainer ${onResultsPage ? "Results" : ""}`}>
           {getCountryStat(0)}
           <div className="LeafContainer">
-            <img className="NoDrag" src={require("./images/LeafUp.png")}/>
+            <img className="NoDrag" src={require("./images/LeafUp.png")} alt=""/>
           </div>
           {getCountryStat(isPortraitMode ? 2 : 1)}
           <div className="LeafContainer">
-            <img className="NoDrag" src={require("./images/LeafDown.png")}/>
+            <img className="NoDrag" src={require("./images/LeafDown.png")} alt=""/>
           </div>
           {getCountryStat(isPortraitMode ? 1 : 2)}
         </div>
@@ -262,8 +262,8 @@ function App() {
           {renderTable()}
           <div className={`SubmitButtonContainer ${onResultsPage ? 'Next' : 'Submit'}`}>
           <div className={`StreakIcon ${onResultsPage ? "Visible" : "Hidden"}`}>
-            <img className={`StreakIcon NoDrag ${streak < 3 ? "Visible" : ""}`} src={require(`./images/StreakIcon.png`)}/>
-            <img className={`StreakIcon NoDrag ${streak >=3 ? "Visible" : ""}`} src={require(`./images/StreakIcon1.png`)}/>
+            <img className={`StreakIcon NoDrag ${streak < 3 ? "Visible" : ""}`} src={require(`./images/StreakIcon.png`)} alt="Streak icon"/>
+            <img className={`StreakIcon NoDrag ${streak >=3 ? "Visible" : ""}`} src={require(`./images/StreakIcon1.png`)} alt="Streak icon"/>
             <p style={{ fontSize: streak > 9 ? "1.5vh" : "1.8vh"}}>{streak}</p>
           </div>
           {!isPortraitMode && 
@@ -276,8 +276,8 @@ function App() {
             </Tooltip>
           }
           <div className={`HighScoreIcon ${onResultsPage ? "Visible" : "Hidden"}`}>
-            <img className={`HighScoreIcon NoDrag ${streak < highScore || streak == 0 ? "Visible" : ""}`} src={require(`./images/HighScoreIcon.png`)}/>
-            <img className={`HighScoreIcon NoDrag ${streak == highScore && streak > 0 ? "Visible" : ""}`} src={require(`./images/HighScoreIcon1.png`)}/>
+            <img className={`HighScoreIcon NoDrag ${streak < highScore || streak === 0 ? "Visible" : ""}`} src={require(`./images/HighScoreIcon.png`)} alt="High score icon"/>
+            <img className={`HighScoreIcon NoDrag ${streak === highScore && streak > 0 ? "Visible" : ""}`} src={require(`./images/HighScoreIcon1.png`)} alt="High score icon"/>
             <p style={{ fontSize: streak > 9 ? "1.5vh" : "1.8vh"}}>{highScore}</p>
           </div>
           {!isPortraitMode && 
@@ -299,15 +299,17 @@ function App() {
             className="SourceIcon" 
             href={onResultsPage ? currentGame.source : "#"}
             target="_blank"
+            rel="noreferrer"
           >
-            <img className={`SourceIcon NoDrag ${onResultsPage ? "Visible" : "Hidden"}`} src={require("./images/SourceIcon.png")}/>
+            <img className={`SourceIcon NoDrag ${onResultsPage ? "Visible" : "Hidden"}`} src={require("./images/SourceIcon.png")} alt="Source icon"/>
           </a>
           <a 
             className="GithubIcon" 
-            href={onResultsPage ? "https://github.com/dmcphee98/nation-ranker" : "#"}
+            href={onResultsPage ? "https://github.com/dmcphee98/nations-by-number" : "#"}
             target="_blank"
+            rel="noreferrer"
           >
-            <img className={`GithubIcon NoDrag ${onResultsPage ? "Visible" : "Hidden"}`} src={require("./images/GithubIcon.png")}/>
+            <img className={`GithubIcon NoDrag ${onResultsPage ? "Visible" : "Hidden"}`} src={require("./images/GithubIcon.png")} alt="Github icon"/>
           </a>
 
           {!isPortraitMode && 

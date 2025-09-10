@@ -8,7 +8,7 @@ import tick from "../images/Tick.png";
 import cross from "../images/Cross.png";
 import Globe from "./Globe";
 
-import "./CountryStat.css";
+import "./CountryStat.scss";
 
 function CountryStat({ index, cidA, cidB, userRanking, answer, onResultsPage, isPlayingGameA, onClick }) {
 
@@ -71,7 +71,7 @@ function CountryStat({ index, cidA, cidB, userRanking, answer, onResultsPage, is
       <div className="Card">
         <img src={require(`../images/CardStack${index}.png`)} alt="" className="CardStack" />
         <div className={`CardFace Top ${isPlayingGameA ? 'FaceUp' : 'FaceDown'} ${onResultsPage ? '' : 'Hoverable'} NoTextHighlight NoDrag`}>
-          <img className="Border"src={require("../images/CardBorder2.png")}/>
+          <img className="Border"src={require("../images/CardBorder2.png")} alt=""/>
           <Flag cid={cidA} onClick={localOnClick}/>
           { cidA === "NIL" &&
             <Globe />
@@ -79,7 +79,7 @@ function CountryStat({ index, cidA, cidB, userRanking, answer, onResultsPage, is
           {renderToken("A")}
         </div>
         <div className={`CardFace Bottom ${isPlayingGameA ? 'FaceDown' : 'FaceUp'} ${onResultsPage ? '' : 'Hoverable'} NoTextHighlight NoDrag`}>
-          <img className="Border" src={require("../images/CardBorder2.png")}/>
+          <img className="Border" src={require("../images/CardBorder2.png")} alt=""/>
           <Flag cid={cidB} onClick={localOnClick}/>
           {renderToken("B")}
         </div>

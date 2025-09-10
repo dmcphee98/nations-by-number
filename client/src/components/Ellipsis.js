@@ -1,5 +1,5 @@
 import React from "react";
-import "./Ellipsis.css";
+import "./Ellipsis.scss";
 
 const Ellipsis = () => {
   return (
