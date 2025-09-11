@@ -42,6 +42,13 @@ function App() {
   }
 
   useEffect(() => {
+    // Preload important images
+    const imageNames = ["Compass", "LeafUp", "LeafDown", "CardBorder", "CardStack0", "CardStack1", "CardStack2", "globe"];
+    imageNames.forEach((imageName) => {
+        const img = new Image();
+        img.src = `${process.env.PUBLIC_URL}/images/${imageName}.png`
+    });
+
     setHighScore(localStorage.getItem("highScore") ?? 0);
     newGame();
   }, []);  
@@ -238,16 +245,15 @@ function App() {
       <img className="Compass NoDrag" src={`${process.env.PUBLIC_URL}/images/Compass.png`} alt="" draggable="false"/>
       <div className="Title NoTextHighlight">{"\u2022"} RANK THE NATIONS BY {"\u2022"}</div>
       <div className="QuestionContainer">
-        { !!games[0] && imagesLoaded >= 3 &&
-        <>
-          <div className={`Question Top ${isPlayingGameA ? "Visible" : "Hidden"} NoTextHighlight`}>
+          <Ellipsis isVisible={!games[0] || imagesLoaded < 3}/>
+          <div className={`Question Top ${isPlayingGameA && gameA ? "Visible" : "Hidden"} NoTextHighlight`}>
             <p style={{display: "inline", position: "relative"}}>{!!gameA ? gameA.name.toUpperCase() : ""}
-              <img className={`InfoIcon ${!!currentGame?.units && !onResultsPage && isPlayingGameA ? "Visible" : "Hidden"}`} src={require("./images/InfoIcon.png")} alt="Info icon"/>
+              <img className={`InfoIcon ${gameA?.units && !onResultsPage && isPlayingGameA ? "Visible" : "Hidden"}`} src={require("./images/InfoIcon.png")} alt="Info icon"/>
             </p>
           </div>
-          <div className={`Question Bottom ${isPlayingGameA ? "Hidden" : "Visible"} NoTextHighlight`}>
+          <div className={`Question Bottom ${!isPlayingGameA && gameB ? "Visible" : "Hidden"} NoTextHighlight`}>
             <p style={{display: "inline", position: "relative"}}>{!!gameB ? gameB.name.toUpperCase() : ""}
-              <img className={`InfoIcon ${!!currentGame?.units && !onResultsPage && !isPlayingGameA ? "Visible" : "Hidden"}`} src={require("./images/InfoIcon.png")} alt="Info icon"/>
+              <img className={`InfoIcon ${gameB?.units && !onResultsPage && !isPlayingGameA ? "Visible" : "Hidden"}`} src={require("./images/InfoIcon.png")} alt="Info icon"/>
             </p>
           </div>
           <Tooltip 
@@ -257,11 +263,6 @@ function App() {
             offset={isPortraitMode ? 5 : 8}>
               {currentGame?.units}
           </Tooltip>
-        </>
-        }
-        { (!!!games[0] || imagesLoaded < 3) &&
-          <Ellipsis />
-        }
       </div>
         <div className={`CountryStatsContainer ${onResultsPage ? "Results" : ""}`}>
           {getCountryStat(0)}

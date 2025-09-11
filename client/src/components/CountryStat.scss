@@ -14,8 +14,16 @@
         cursor: pointer;
     }
 
-    .CardFace.Hoverable:hover {
-        scale: 1.05;
+    @media (any-hover: hover) {
+        .CardFace.Hoverable:hover {
+            scale: 1.05;
+        }
+    }
+
+    @media not (any-hover: hover) {
+        .CardFace.Hoverable:active {
+            scale: 1.05;
+        }
     }
 }
 
@@ -58,12 +66,12 @@
         line-height: 100%;
         cursor: context-menu;
 
-        transition: top 0.6s ease, opacity 0.6s ease;
+        transition: opacity 0.3s ease 0.3s;
     }
 
     .Name.Hidden {
-        top: 90%;
         opacity: 0;
+        transition: opacity 0.3s ease;
     }
 
     .Card {
@@ -85,8 +93,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-
-        background-color: blue;
     
         transition: transform 0.6s, scale 0.1s ease;
         backface-visibility: hidden;

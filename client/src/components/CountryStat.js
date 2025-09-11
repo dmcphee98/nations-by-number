@@ -79,7 +79,7 @@ function CountryStat({ index, cidA, cidB, userRanking, answer, onResultsPage, is
         <div className={`CardFace Top ${isPlayingGameA ? 'FaceUp' : 'FaceDown'} ${onResultsPage ? '' : 'Hoverable'} NoTextHighlight NoDrag`}>
           <img className="Border"src={`${process.env.PUBLIC_URL}/images/CardBorder.png`} alt=""/>
           <Flag cid={cidA} onClick={localOnClick} setImageLoaded={setImagesLoaded}/>
-          { cidA === "NIL" &&
+          { (!cidA || cidA === "NIL") &&
             <Globe />
           }
           {renderToken("A")}
