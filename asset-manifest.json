@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/nations-by-number/static/css/main.72060b67.css",
+    "main.css": "/nations-by-number/static/css/main.fa01a3de.css",
     "main.js": "/nations-by-number/static/js/main.6c105fae.js",
     "static/media/GithubIcon.png": "/nations-by-number/static/media/GithubIcon.6c185a78400a0f6f9689.png",
     "static/media/GUY.png": "/nations-by-number/static/media/GUY.a57ecfd3097e006ed8ea.png",
@@ -106,11 +106,11 @@
     "static/media/WSM.png": "/nations-by-number/static/media/WSM.877679415d87665605f8.png",
     "static/media/BTN.png": "/nations-by-number/static/media/BTN.7633380e7e1e696ae7e0.png",
     "index.html": "/nations-by-number/index.html",
-    "main.72060b67.css.map": "/nations-by-number/static/css/main.72060b67.css.map",
+    "main.fa01a3de.css.map": "/nations-by-number/static/css/main.fa01a3de.css.map",
     "main.6c105fae.js.map": "/nations-by-number/static/js/main.6c105fae.js.map"
   },
   "entrypoints": [
-    "static/css/main.72060b67.css",
+    "static/css/main.fa01a3de.css",
     "static/js/main.6c105fae.js"
   ]
 }
