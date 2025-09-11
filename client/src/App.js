@@ -235,7 +235,7 @@ function App() {
 
   return (
     <div className="App" >
-      <img className="Compass NoDrag" src={`${process.env.PUBLIC_URL}/images/Compass.png`} alt=""/>
+      <img className="Compass NoDrag" src={`${process.env.PUBLIC_URL}/images/Compass.png`} alt="" draggable="false"/>
       <div className="Title NoTextHighlight">{"\u2022"} RANK THE NATIONS BY {"\u2022"}</div>
       <div className="QuestionContainer">
         { !!games[0] && imagesLoaded >= 3 &&
@@ -266,11 +266,11 @@ function App() {
         <div className={`CountryStatsContainer ${onResultsPage ? "Results" : ""}`}>
           {getCountryStat(0)}
           <div className="LeafContainer">
-            <img className="NoDrag" src={`${process.env.PUBLIC_URL}/images/LeafUp.png`} alt=""/>
+            <img className="NoDrag" src={`${process.env.PUBLIC_URL}/images/LeafUp.png`} alt="" draggable="false"/>
           </div>
           {getCountryStat(isPortraitMode ? 2 : 1)}
           <div className="LeafContainer">
-            <img className="NoDrag" src={`${process.env.PUBLIC_URL}/images/LeafDown.png`} alt=""/>
+            <img className="NoDrag" src={`${process.env.PUBLIC_URL}/images/LeafDown.png`} alt="" draggable="false"/>
           </div>
           {getCountryStat(isPortraitMode ? 1 : 2)}
         </div>
@@ -292,9 +292,9 @@ function App() {
             </Tooltip>
           }
           <div className={`HighScoreIcon ${onResultsPage ? "Visible" : "Hidden"}`}>
-            <img className={`HighScoreIcon NoDrag ${streak < highScore || streak === 0 ? "Visible" : ""}`} src={require(`./images/HighScoreIcon.png`)} alt="High score icon"/>
-            <img className={`HighScoreIcon NoDrag ${streak === highScore && streak > 0 ? "Visible" : ""}`} src={require(`./images/HighScoreIcon1.png`)} alt="High score icon"/>
-            <p style={{ fontSize: streak > 9 ? "1.5vh" : "1.8vh"}}>{highScore}</p>
+            <img className={`HighScoreIcon NoDrag ${streak < highScore || streak <= 0 ? "Visible" : ""}`} src={require(`./images/HighScoreIcon.png`)} alt="High score icon"/>
+            <img className={`HighScoreIcon NoDrag ${streak >= highScore && streak > 0 ? "Visible" : ""}`} src={require(`./images/HighScoreIcon1.png`)} alt="High score icon"/>
+            <p style={{ fontSize: highScore > 9 ? "1.5vh" : "1.8vh"}}>{highScore}</p>
           </div>
           {!isPortraitMode && 
             <Tooltip 
@@ -312,20 +312,20 @@ function App() {
               {onResultsPage ? 'NEXT' : 'SUBMIT'}
           </div>
           <a 
-            className="SourceIcon" 
+            className={`SourceIcon ${onResultsPage ? "Visible" : "Hidden"}`} 
             href={onResultsPage ? currentGame.source : "#"}
             target="_blank"
             rel="noreferrer"
           >
-            <img className={`SourceIcon NoDrag ${onResultsPage ? "Visible" : "Hidden"}`} src={require("./images/SourceIcon.png")} alt="Source icon"/>
+            <img className="SourceIcon NoDrag" src={require("./images/SourceIcon.png")} alt="Source icon" draggable="false"/>
           </a>
           <a 
-            className="GithubIcon" 
+            className={`GithubIcon ${onResultsPage ? "Visible" : "Hidden"}`} 
             href={onResultsPage ? "https://github.com/dmcphee98/nations-by-number" : "#"}
             target="_blank"
             rel="noreferrer"
           >
-            <img className={`GithubIcon NoDrag ${onResultsPage ? "Visible" : "Hidden"}`} src={require("./images/GithubIcon.png")} alt="Github icon"/>
+            <img className="GithubIcon NoDrag" src={require("./images/GithubIcon.png")} alt="Github icon" draggable="false"/>
           </a>
 
           {!isPortraitMode && 

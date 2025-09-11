@@ -53,12 +53,19 @@ function CountryStat({ index, cidA, cidB, userRanking, answer, onResultsPage, is
           }}
           onClick={() => {if (onResultsPage) {setShowResult(!showResult)};}}
         >
-          <img className="NoDrag" src={userRanking === answer ? tokenGreen : tokenRed} alt="" style={{rotate: `${(index-1)*55}deg`}} />
+          <img 
+            className="NoDrag" 
+            src={userRanking === answer ? tokenGreen : tokenRed} 
+            alt="" 
+            style={{rotate: `${(index-1)*55}deg`}} 
+            draggable="false"
+            />
           <img 
             className="CrossTick NoDrag" 
             src={userRanking === answer ? tick : cross} 
             alt={userRanking === answer ? 'Tick' : 'Cross'} 
             style={{left: `${50+(index-1)*3}%`}}
+            draggable="false"
           />
         </div>
 
@@ -68,8 +75,7 @@ function CountryStat({ index, cidA, cidB, userRanking, answer, onResultsPage, is
 
   return (
     <div className={`CountryStat ${cidA === "NIL" ? 'Loading' : 'Loaded'}`}>
-      <div className="Card">
-        <img src={`${process.env.PUBLIC_URL}/images/CardStack${index}.png`} alt="" className="CardStack"/>
+      <div className="Card" style={{backgroundImage: `url(${process.env.PUBLIC_URL}/images/CardStack${index}.png)`}}>
         <div className={`CardFace Top ${isPlayingGameA ? 'FaceUp' : 'FaceDown'} ${onResultsPage ? '' : 'Hoverable'} NoTextHighlight NoDrag`}>
           <img className="Border"src={`${process.env.PUBLIC_URL}/images/CardBorder.png`} alt=""/>
           <Flag cid={cidA} onClick={localOnClick} setImageLoaded={setImagesLoaded}/>

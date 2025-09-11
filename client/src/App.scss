@@ -134,6 +134,7 @@ img.Compass {
   opacity: 0;
   transform: translate(-50%, -50%);
   transition: opacity 0.15s ease-out, transform 0.4s ease;
+  pointer-events: none;
 }
 
 .AnswerTable td,
@@ -245,6 +246,7 @@ a.GithubIcon {
   position: absolute;
   height: 100%;
   transform: translateX(50%);
+  transition: opacity 0.2s ease;
 }
 
 a.SourceIcon {
@@ -260,7 +262,7 @@ img.GithubIcon {
   height: 90%;
   cursor: pointer;
   opacity: 0.7;
-  transition: opacity 0.2s ease, scale 0.1s ease;
+  transition: scale 0.1s ease;
 }
 
 div.StreakIcon,
@@ -272,7 +274,6 @@ div.HighScoreIcon {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
 }
 
 div.StreakIcon {
@@ -291,7 +292,6 @@ img.HighScoreIcon {
   transform: translate(-50%, -50%);
   height: 90%;
   opacity: 0;
-  transition: opacity 0.5s ease;
 }
 
 img.StreakIcon.Visible,
@@ -320,6 +320,7 @@ img.HighScoreIcon.Visible {
 .StreakIcon.Hidden,
 .HighScoreIcon.Hidden {
   opacity: 0;
+  pointer-events: none;
 }
 
 @media screen and (orientation: landscape) {

@@ -20,11 +20,12 @@ function Flag({cid, onClick, setImageLoaded}) {
 
   return (
     <img 
-      className="Flag"
+      className="Flag NoDrag"
       src={resolveImgSrc(cid)} 
       alt={!!cid ? 'Flag of ' + decodeAlpha03(cid) : 'Unknown flag'}
       onClick={onClick}
       onLoad={() => onLoad(cid)} 
+      draggable="false"
     />
   )
 }
